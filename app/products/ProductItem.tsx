@@ -2,7 +2,7 @@ import { FC } from "react";
 import { IProduct } from "@/types/product";
 import { Typography } from "@mui/material";
 import { productPageStyles } from "./style/productPageStyles";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface Props {
   product: IProduct;
@@ -16,7 +16,7 @@ export const ProductItem: FC<Props> = ({ product }) => {
         alt={product.title}
         src={product.imageUrl}
         className={classes.listImage}
-        layout="intrinsic"
+        layout="responsive"
         width={"400"}
         height={"610"}
       />
