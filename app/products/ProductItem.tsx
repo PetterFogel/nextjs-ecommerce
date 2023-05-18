@@ -20,7 +20,7 @@ export const ProductItem: FC<Props> = ({ product }) => {
         width={"400"}
         height={"610"}
       />
-      <Typography variant="h4" mb={0.2} sx={{ cursor: "pointer" }}>
+      <Typography variant="h4" mt={0.5} sx={{ cursor: "pointer" }}>
         {product.title}
       </Typography>
       <Typography variant="h5">{product.price + " SEK"}</Typography>
