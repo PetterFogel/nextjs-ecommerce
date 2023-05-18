@@ -8,9 +8,10 @@ export const errorPanelStyles = makeStyles()((theme: Theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    padding: theme.spacing(1),
+    maxWidth: "900px",
     [theme.breakpoints.down("md")]: {
-      width: "100%",
-      padding: theme.spacing(1)
+      width: "100%"
     }
   },
   errorPanel: {
