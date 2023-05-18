@@ -26,17 +26,17 @@ export const theme = createTheme({
       fontWeight: 600,
       color: "#333",
       letterSpacing: "1px",
-      fontSize: "clamp(0.5rem, 2vw, 0.8rem)"
+      fontSize: "clamp(0.6rem, 2vw, 0.9rem)"
     },
     h5: {
       fontWeight: 400,
       color: "#333",
-      fontSize: "clamp(0.6rem, 2vw, 0.9rem)"
+      fontSize: "clamp(0.5rem, 2vw, 0.8rem)"
     },
     subtitle1: {
       color: "#333",
       letterSpacing: "0.5px",
-      fontSize: "clamp(0.6rem, 2vw, 0.8rem)",
+      fontSize: "clamp(0.6rem, 2vw, 0.9rem)",
       fontWeight: 600
     },
     subtitle2: {
