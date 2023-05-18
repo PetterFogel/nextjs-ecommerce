@@ -13,8 +13,8 @@ export const burgerMenuStyles = makeStyles()((theme: Theme) => ({
   burgerBar: {
     background: "#333",
     margin: "0.3rem",
-    width: "2.2rem",
-    height: "0.2rem",
+    width: "2rem",
+    height: "0.15rem",
     transition: "all 300ms ease"
   }
 }));
