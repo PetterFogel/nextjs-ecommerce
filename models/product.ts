@@ -25,6 +25,10 @@ export const ProductSchema = new Schema<IProduct>({
   price: {
     type: Number,
     required: [true, "Price is required."]
+  },
+  rating: {
+    type: Number,
+    required: false
   }
 });
 
