@@ -1,9 +1,9 @@
-import { Header } from "@/components/header/Header";
-import { MuiProvider } from "@/components/theme-provider/ThemeProvider";
+import { Header } from "@/common/components/header/Header";
+import { MuiProvider } from "@/common/components/theme-provider/ThemeProvider";
 import { FC, ReactNode } from "react";
 import { Source_Sans_Pro } from "next/font/google";
-
 import "./globals.css";
+
 const sourceSansPro = Source_Sans_Pro({
   weight: ["400", "700"],
   subsets: ["latin"]

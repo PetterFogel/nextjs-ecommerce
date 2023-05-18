@@ -41,13 +41,11 @@ export const headerPageStyles = makeStyles()((theme: Theme) => ({
       alignItems: "center",
       background: "#fff",
       zIndex: 200,
-      width: "50%",
       height: "94vh",
       top: "6vh",
       transition: "right 500ms ease-in"
     },
     [theme.breakpoints.down("md")]: {
-      position: "absolute",
       width: "100%",
       right: "-100%"
     }
