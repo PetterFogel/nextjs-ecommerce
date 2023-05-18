@@ -10,7 +10,10 @@ export const Header: FC = () => {
 
   return (
     <header className={classes.header}>
-      <Link href="/" className={classes.logo} onClick={() => setIsMenuOpen(false)}>
+      <Link
+        href="/"
+        className={classes.logo}
+        onClick={() => setIsMenuOpen(false)}>
         THE MANY SAINTS
       </Link>
       <nav className={classes.nav}>
@@ -19,7 +22,10 @@ export const Header: FC = () => {
           style={{
             right: isMenuOpen ? "0%" : "-100%"
           }}>
-          <Link href="/products" className={classes.link} onClick={() => setIsMenuOpen(false)}>
+          <Link
+            href="/products"
+            className={classes.link}
+            onClick={() => setIsMenuOpen(false)}>
             <li className="link">PRODUCTS</li>
           </Link>
           <Link href="/about" className={classes.link}>
@@ -29,10 +35,16 @@ export const Header: FC = () => {
             <li>ADMIN</li>
           </Link>
         </ul>
-        <Link href="/checkout" className={classes.cartLink} onClick={() => setIsMenuOpen(false)}>
+        <Link
+          href="/checkout"
+          className={classes.cartLink}
+          onClick={() => setIsMenuOpen(false)}>
           CART
         </Link>
-        <BurgerMenu value={isMenuOpen} onBurgerMenuOpenClick={() => setIsMenuOpen(!isMenuOpen)} />
+        <BurgerMenu
+          value={isMenuOpen}
+          onBurgerMenuOpenClick={() => setIsMenuOpen(!isMenuOpen)}
+        />
       </nav>
     </header>
   );

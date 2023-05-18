@@ -22,7 +22,9 @@ export const POST = async (req: NextRequest) => {
     const newpProduct = new Product(values as IProduct);
 
     await newpProduct.save();
-    return new NextResponse("Product was created successfully!", { status: 201 });
+    return new NextResponse("Product was created successfully!", {
+      status: 201
+    });
   } catch (error) {
     if (error instanceof Error) {
       return new NextResponse(error.message, { status: 400 });

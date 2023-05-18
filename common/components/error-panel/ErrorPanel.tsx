@@ -11,7 +11,10 @@ export const ErrorPanel: FC<Props> = ({ errorMsg, onResetClick }) => {
   const { classes } = errorPanelStyles();
   return (
     <div className={classes.root}>
-      <Alert variant={"outlined"} severity={"error"} className={classes.errorPanel}>
+      <Alert
+        variant={"outlined"}
+        severity={"error"}
+        className={classes.errorPanel}>
         <div className={classes.infoPanel}>
           <Typography variant={"h2"} mb={2}>
             {errorMsg}

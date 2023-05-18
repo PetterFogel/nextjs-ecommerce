@@ -8,7 +8,10 @@ interface Props {
   onPriceSortChange: (value: string | null) => void;
 }
 
-export const ProductFilterPanel: FC<Props> = ({ onCategoryFilterChange, onPriceSortChange }) => {
+export const ProductFilterPanel: FC<Props> = ({
+  onCategoryFilterChange,
+  onPriceSortChange
+}) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [anchorEl2, setAnchorEl2] = useState<null | HTMLElement>(null);
   const isFilterOpen = Boolean(anchorEl);
@@ -52,9 +55,15 @@ export const ProductFilterPanel: FC<Props> = ({ onCategoryFilterChange, onPriceS
         MenuListProps={{
           "aria-labelledby": "filter-button"
         }}>
-        <MenuItem onClick={() => filterSelectHandler(Categories.ALL)}>All</MenuItem>
-        <MenuItem onClick={() => filterSelectHandler(Categories.SHOES)}>Shoes</MenuItem>
-        <MenuItem onClick={() => filterSelectHandler(Categories.OVERSHIRTS)}>Overshirts</MenuItem>
+        <MenuItem onClick={() => filterSelectHandler(Categories.ALL)}>
+          All
+        </MenuItem>
+        <MenuItem onClick={() => filterSelectHandler(Categories.SHOES)}>
+          Shoes
+        </MenuItem>
+        <MenuItem onClick={() => filterSelectHandler(Categories.OVERSHIRTS)}>
+          Overshirts
+        </MenuItem>
       </Menu>
       <Button
         id="sort-button"
@@ -74,8 +83,12 @@ export const ProductFilterPanel: FC<Props> = ({ onCategoryFilterChange, onPriceS
           "aria-labelledby": "sort-button"
         }}>
         <MenuItem onClick={() => sortPriceHandler(null)}>Popular</MenuItem>
-        <MenuItem onClick={() => sortPriceHandler("ASC")}>Lowest price</MenuItem>
-        <MenuItem onClick={() => sortPriceHandler("DESC")}>Highest price</MenuItem>
+        <MenuItem onClick={() => sortPriceHandler("ASC")}>
+          Lowest price
+        </MenuItem>
+        <MenuItem onClick={() => sortPriceHandler("DESC")}>
+          Highest price
+        </MenuItem>
       </Menu>
     </Stack>
   );
