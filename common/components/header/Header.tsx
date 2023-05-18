@@ -2,6 +2,9 @@
 import { BurgerMenu } from "../burger-menu/BurgerMenu";
 import { FC, useState } from "react";
 import { headerPageStyles } from "./style/headerStyles";
+import ShoppingIcon from "../../../assets/shopping-bag.svg";
+import Image from "next/legacy/image";
+
 import Link from "next/link";
 
 export const Header: FC = () => {
@@ -28,10 +31,16 @@ export const Header: FC = () => {
             onClick={() => setIsMenuOpen(false)}>
             <li className="link">PRODUCTS</li>
           </Link>
-          <Link href="/about" className={classes.link}>
-            <li onClick={() => setIsMenuOpen(false)}>ABOUT</li>
+          <Link
+            href="/about"
+            className={classes.link}
+            onClick={() => setIsMenuOpen(false)}>
+            <li>ABOUT</li>
           </Link>
-          <Link href="/admin" className={classes.link}>
+          <Link
+            href="/admin"
+            className={classes.link}
+            onClick={() => setIsMenuOpen(false)}>
             <li>ADMIN</li>
           </Link>
         </ul>
@@ -39,7 +48,9 @@ export const Header: FC = () => {
           href="/checkout"
           className={classes.cartLink}
           onClick={() => setIsMenuOpen(false)}>
-          CART
+          <div className={classes.cartIcon}>
+            <Image src={ShoppingIcon} alt="Cart icon" />
+          </div>
         </Link>
         <BurgerMenu
           value={isMenuOpen}
