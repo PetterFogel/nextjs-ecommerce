@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-const Checkout: NextPage = () => {
+const CheckoutPage: NextPage = () => {
   return (
     <main>
       <h2>Checkout</h2>
@@ -8,4 +8,4 @@ const Checkout: NextPage = () => {
   );
 };
 
-export default Checkout;
+export default CheckoutPage;

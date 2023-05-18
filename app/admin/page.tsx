@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-const Admin: NextPage = () => {
+const AdminPage: NextPage = () => {
   return (
     <main>
       <h2>Admin</h2>
@@ -8,4 +8,4 @@ const Admin: NextPage = () => {
   );
 };
 
-export default Admin;
+export default AdminPage;

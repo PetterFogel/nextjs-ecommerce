@@ -1,7 +1,7 @@
 import { fetchData } from "@/utils/fetchData";
 import { ProductList } from "./ProductList";
 
-const Products = async () => {
+const ProductsPage = async () => {
   const products = await fetchData("products");
 
   return (
@@ -11,4 +11,4 @@ const Products = async () => {
   );
 };
 
-export default Products;
+export default ProductsPage;

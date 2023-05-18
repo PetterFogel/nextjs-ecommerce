@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 
-const About: NextPage = () => {
+const AboutPage: NextPage = () => {
   return (
     <main>
       <h2>About</h2>
@@ -8,4 +8,4 @@ const About: NextPage = () => {
   );
 };
 
-export default About;
+export default AboutPage;
