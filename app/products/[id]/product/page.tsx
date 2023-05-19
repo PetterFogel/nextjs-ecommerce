@@ -3,7 +3,7 @@ import { IProduct } from "@/types/product";
 
 type Props = {
   params: {
-    _id: string;
+    id: string;
   };
 };
 
@@ -22,7 +22,7 @@ async function fetchData(id: string) {
 }
 
 async function ItemDetails({ params }: Props) {
-  const product: IProduct = await fetchData(params._id);
+  const product: IProduct = await fetchData(params.id);
 
   if (!product) return;
 
