@@ -6,13 +6,10 @@ import { Suspense } from "react";
 export async function generateStaticParams() {
   const products: IProduct[] = await fetchData("products");
 
-  return products.map((p) => {
-    return {
-      params: {
-        id: p._id
-      }
-    };
-  });
+  const result = products.map((p) => ({
+    id: p._id
+  }));
+  return result;
 }
 
 async function ProductItem({ params }: { params: { id: string } }) {
