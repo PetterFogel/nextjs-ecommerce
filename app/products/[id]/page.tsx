@@ -1,4 +1,6 @@
 import { ProductDetails } from "@/common/components/ProductDetails";
+import { IProduct } from "@/types/product";
+import { fetchData } from "@/utils/fetchData";
 
 type Props = {
   params: {
@@ -6,24 +8,15 @@ type Props = {
   };
 };
 
-async function fetchData(id: string) {
-  const response = await fetch(
-    `${process.env.API_BASE_URL}/api/products/${id}`,
-    {
-      cache: "no-store"
-    }
-  );
-
-  return await response.json();
+export async function generateStaticParams() {
+  const products: IProduct[] = await fetchData("products");
+  return products.map((p) => p._id);
 }
 
 async function ItemDetails({ params }: Props) {
-  const product = await fetchData(params.id);
-  return (
-    <section>
-      <ProductDetails product={product} />
-    </section>
-  );
+  const product = await fetchData("products", params.id);
+  if (!product) return;
+  return <ProductDetails product={product} />;
 }
 
 export default ItemDetails;
