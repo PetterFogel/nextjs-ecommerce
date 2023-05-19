@@ -10,7 +10,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props) {
   const { id } = params;
-  const post = await fetchData("products", { _id: id });
+  const post = await fetchData("products", id);
 
   if (!post) return {};
 
@@ -31,7 +31,7 @@ async function EditPost({ params }: Props) {
   const { id } = params;
   console.log(id);
 
-  const product: IProduct = await fetchData("products", { _id: id });
+  const product: IProduct = await fetchData("products", id);
 
   if (!product) return;
 
