@@ -2,10 +2,6 @@ import { ProductDetails } from "@/common/components/ProductDetails";
 import { IProduct } from "@/types/product";
 import { fetchData } from "@/utils/fetchData";
 
-interface Props {
-  params: { id: string };
-}
-
 export async function generateStaticParams() {
   const products: IProduct[] = await fetchData("products");
 
@@ -14,14 +10,10 @@ export async function generateStaticParams() {
   }));
 }
 
-const ProductItem = async ({ params }: Props) => {
+const ProductItem = async ({ params }: { params: { id: string } }) => {
   const product = await fetchData("products", params.id);
   if (!product) return;
-  return (
-    <>
-      <h2>TEST</h2>
-    </>
-  );
+  return <ProductDetails product={product} />;
 };
 
 export default ProductItem;
