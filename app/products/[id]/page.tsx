@@ -1,8 +1,22 @@
+import { IProduct } from "@/types/product";
 import { fetchData } from "@/utils/fetchData";
 import { ProductDetails } from "../ProductDetails";
-import React from "react";
 
-const ProductItem = async ({ params }: { params: { id: string } }) => {
+interface Props {
+  params: {
+    id: string;
+  };
+}
+
+export const generateStaticParams = async () => {
+  const products: IProduct[] = await fetchData("products");
+
+  return products.map((p) => ({
+    id: p._id
+  }));
+};
+
+const ProductItem = async ({ params }: Props) => {
   const product = await fetchData("products", params.id);
   if (!product) return;
   return <ProductDetails product={product} />;
