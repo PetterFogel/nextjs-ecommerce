@@ -17,3 +17,36 @@ body {
 a {
   text-decoration: none;
 }
+
+.introContainer {
+  margin: 30px 0px;
+  padding: 0px 20px;
+}
+
+.heroSection {
+  position: relative;
+  height: 94vh;
+  overflow: hidden;
+  background: linear-gradient(90deg, #f12711, #f5af19, #3dc5b3, #41b3e6, #7b53e6, #f12711);
+  background-size: 1200% 1200%;
+  animation: changeGradient 30s ease-in-out infinite;  
+}
+
+@keyframes changeGradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+.title {
+  font-size: clamp(2rem, 8vw, 4rem);
+  font-weight: 600;
+  color: #333;
+  letter-spacing: 4px
+}
