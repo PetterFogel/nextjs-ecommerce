@@ -10,7 +10,7 @@ async function fetchData(id: string) {
   const response = await fetch(
     `${process.env.API_BASE_URL}/api/products/${id}`,
     {
-      cache: "force-cache"
+      cache: "no-store"
     }
   );
 
