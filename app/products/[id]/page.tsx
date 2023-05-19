@@ -1,6 +1,6 @@
+import { ProductDetails } from "@/common/components/ProductDetails";
 import { IProduct } from "@/types/product";
 import { fetchData } from "@/utils/fetchData";
-import { ProductDetails } from "./ProductDetails";
 
 interface Props {
   params: { id: string };
