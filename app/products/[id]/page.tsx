@@ -1,24 +1,10 @@
 import { ProductDetails } from "@/common/components/ProductDetails";
 import { fetchData } from "@/utils/fetchData";
 
-type Props = {
-  params: {
-    id: string;
-  };
-};
-
-// export async function generateStaticParams() {
-//   const products: IProduct[] = await fetchData("products");
-
-//   return products.map((p) => ({
-//     id: p._id
-//   }));
-// }
-
-async function ItemDetails({ params }: Props) {
+const ProductItem = async ({ params }: { params: { id: string } }) => {
   const product = await fetchData("products", params.id);
   if (!product) return;
   return <ProductDetails product={product} />;
-}
+};
 
-export default ItemDetails;
+export default ProductItem;
