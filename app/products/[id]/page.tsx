@@ -1,6 +1,5 @@
 import { ProductDetails } from "@/common/components/ProductDetails";
 import { IProduct } from "@/types/product";
-import { fetchData } from "@/utils/fetchData";
 
 type Props = {
   params: {
@@ -8,8 +7,22 @@ type Props = {
   };
 };
 
-async function EditPost({ params }: Props) {
-  const product: IProduct = await fetchData("products", params.id);
+async function fetchData(id: string) {
+  const response = await fetch(
+    `${process.env.API_BASE_URL}/api/products/${id}`,
+    {
+      cache: "no-store"
+    }
+  );
+
+  console.log("testingggggggg");
+
+  await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second
+  return await response.json();
+}
+
+async function ItemDetails({ params }: Props) {
+  const product: IProduct = await fetchData(params.id);
 
   if (!product) return;
 
@@ -20,4 +33,4 @@ async function EditPost({ params }: Props) {
   );
 }
 
-export default EditPost;
+export default ItemDetails;
