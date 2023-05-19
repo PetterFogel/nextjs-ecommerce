@@ -1,6 +1,6 @@
-import { ProductDetails } from "@/common/components/ProductDetails";
+import { IProduct } from "@/types/product";
 
-async function fetchProduct(id: string) {
+async function fetchProduct(id: string): Promise<IProduct> {
   const response = await fetch(
     `${process.env.API_BASE_URL}/api/products/${id}`,
     {
@@ -16,7 +16,11 @@ async function fetchProduct(id: string) {
 async function ProductItem({ params }: { params: { id: string } }) {
   const product = await fetchProduct(params.id);
   if (!product) return;
-  return <ProductDetails product={product} />;
+  return (
+    <>
+      <h2>{product.title}</h2>
+    </>
+  );
 }
 
 export default ProductItem;
