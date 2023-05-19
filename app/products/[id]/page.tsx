@@ -1,17 +1,22 @@
 import { ProductDetails } from "@/common/components/ProductDetails";
+import { Suspense } from "react";
 
 async function getProduct(id: string) {
-  const res = await fetch(`http://localhost:3000/api/products/${id}`);
+  const res = await fetch(`${process.env.API_BASE_URL}/api/products/${id}`);
   return res.json();
 }
 
 async function ProductItem({ params: { id } }: { params: { id: string } }) {
-  const product = await getProduct(id);
-  if (!product) return;
+  const productData = await getProduct(id);
+
+  const product = await productData;
+
   return (
     <>
       <h2>{product.title}</h2>
-      <ProductDetails product={product} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ProductDetails product={productData} />
+      </Suspense>
     </>
   );
 }

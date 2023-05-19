@@ -14,6 +14,8 @@ export const ProductDetails: FC<Props> = ({ product }) => {
   const { classes } = productPageStyles();
   const [sizeValue, setSizeValue] = useState(shoeSizes[0]);
 
+  console.log(`${process.env.API_BASE_URL}`);
+
   const sizeSelectHandler = (size: number) => setSizeValue(size.toString());
 
   return (
