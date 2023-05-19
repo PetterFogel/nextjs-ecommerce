@@ -14,6 +14,8 @@ export const GET = async (
 
     return new NextResponse(JSON.stringify(product), { status: 200 });
   } catch (error) {
-    return new NextResponse("Internal Server Error", { status: 500 });
+    if (error instanceof Error) {
+      return new NextResponse(error.message, { status: 500 });
+    }
   }
 };
