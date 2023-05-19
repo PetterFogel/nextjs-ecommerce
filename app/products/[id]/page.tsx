@@ -1,23 +1,23 @@
+import { IProduct } from "@/types/product";
+import { fetchData } from "@/utils/fetchData";
 import { ProductDetails } from "@/common/components/ProductDetails";
 import { Suspense } from "react";
 
-async function getProduct(id: string) {
-  const res = await fetch(`${process.env.API_BASE_URL}/api/products/${id}`);
-  return res.json();
+export async function generateStaticParams() {
+  const products: IProduct[] = await fetchData("products");
+
+  return products.map((p) => ({
+    id: p._id
+  }));
 }
 
-async function ProductItem({ params: { id } }: { params: { id: string } }) {
-  const productData = await getProduct(id);
-
-  const product = await productData;
-
+async function ProductItem({ params }: { params: { id: string } }) {
+  const product = await fetchData("products", params.id);
+  if (!product) return;
   return (
-    <>
-      <h2>{product.title}</h2>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ProductDetails product={productData} />
-      </Suspense>
-    </>
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProductDetails product={product} />
+    </Suspense>
   );
 }
 
