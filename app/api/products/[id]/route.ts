@@ -4,13 +4,12 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
   _: NextRequest,
-  { params }: { params: { _id: string } }
+  { params }: { params: { id: string } }
 ) => {
   try {
     await connectToDB();
-    console.log("ROUTE ", params._id);
 
-    const product = await Product.findById(params._id);
+    const product = await Product.findById(params.id);
     if (!product) return new NextResponse("Product Not Found", { status: 404 });
 
     return new NextResponse(JSON.stringify(product), { status: 200 });

@@ -1,27 +1,24 @@
 import { ProductDetails } from "@/common/components/ProductDetails";
-import { IProduct } from "@/types/product";
 
 type Props = {
   params: {
-    _id: string;
+    id: string;
   };
 };
 
 async function fetchData(id: string) {
   const response = await fetch(
-    `${process.env.API_BASE_URL}/api/products/${id}`
+    `${process.env.API_BASE_URL}/api/products/${id}`,
+    {
+      cache: "force-cache"
+    }
   );
-
-  console.log("testingggggggg");
 
   return await response.json();
 }
 
 async function ItemDetails({ params }: Props) {
-  const product: IProduct = await fetchData(params._id);
-
-  if (!product) return;
-
+  const product = await fetchData(params.id);
   return (
     <section>
       <ProductDetails product={product} />
