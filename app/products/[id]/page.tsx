@@ -6,17 +6,20 @@ import { Suspense } from "react";
 export async function generateStaticParams() {
   const products: IProduct[] = await fetchData("products");
 
-  const result = products.map((p) => ({
-    id: p._id
-  }));
-  return result;
+  return products.map((p) => {
+    return {
+      params: {
+        id: p._id
+      }
+    };
+  });
 }
 
 async function ProductItem({ params }: { params: { id: string } }) {
   const product = await fetchData("products", params.id);
   if (!product) return;
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div></div>}>
       <ProductDetails product={product} />
     </Suspense>
   );
