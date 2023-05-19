@@ -9,15 +9,11 @@ type Props = {
 
 async function fetchData(id: string) {
   const response = await fetch(
-    `${process.env.API_BASE_URL}/api/products/${id}`,
-    {
-      cache: "no-store"
-    }
+    `${process.env.API_BASE_URL}/api/products/${id}`
   );
 
   console.log("testingggggggg");
 
-  await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait 1 second
   return await response.json();
 }
 
