@@ -18,7 +18,7 @@ async function ProductItem({ params }: { params: { id: string } }) {
   if (!product) return;
   return (
     <>
-      <h2>{product.title}</h2>
+      <h2>Details</h2>
     </>
   );
 }
