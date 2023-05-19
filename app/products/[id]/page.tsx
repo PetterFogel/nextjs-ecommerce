@@ -10,7 +10,10 @@ type Props = {
 
 export async function generateStaticParams() {
   const products: IProduct[] = await fetchData("products");
-  return products.map((p) => p._id);
+
+  return products.map((p) => ({
+    id: p._id
+  }));
 }
 
 async function ItemDetails({ params }: Props) {
