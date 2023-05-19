@@ -1,24 +1,17 @@
-import { IProduct } from "@/types/product";
+import { ProductDetails } from "@/common/components/ProductDetails";
 
-async function fetchProduct(id: string): Promise<IProduct> {
-  const response = await fetch(
-    `${process.env.API_BASE_URL}/api/products/${id}`,
-    {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    }
-  );
-  const contents = await response.json();
-  return contents;
+async function getProduct(id: string) {
+  const res = await fetch(`http://localhost:3000/api/products/${id}`);
+  return res.json();
 }
 
-async function ProductItem({ params }: { params: { id: string } }) {
-  const product = await fetchProduct(params.id);
+async function ProductItem({ params: { id } }: { params: { id: string } }) {
+  const product = await getProduct(id);
   if (!product) return;
   return (
     <>
       <h2>{product.title}</h2>
+      <ProductDetails product={product} />
     </>
   );
 }
