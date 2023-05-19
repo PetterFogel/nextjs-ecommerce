@@ -8,13 +8,13 @@ interface Props {
   };
 }
 
-export const generateStaticParams = async () => {
+export async function generateStaticParams() {
   const products: IProduct[] = await fetchData("products");
 
   return products.map((p) => ({
     id: p._id
   }));
-};
+}
 
 const ProductItem = async ({ params }: Props) => {
   const product = await fetchData("products", params.id);
