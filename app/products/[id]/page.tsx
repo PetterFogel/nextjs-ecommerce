@@ -1,27 +1,45 @@
+import { ProductDetails } from "@/common/components/ProductDetails";
 import { IProduct } from "@/types/product";
 import { fetchData } from "@/utils/fetchData";
-import { ProductDetails } from "@/common/components/ProductDetails";
-import { Suspense } from "react";
 
-export async function generateStaticParams() {
-  const productsData: IProduct[] = await fetchData("products");
+type Props = {
+  params: {
+    id: string;
+  };
+};
 
-  const ids = productsData.map((p) => ({
-    id: p._id
-  }));
+export async function generateMetadata({ params }: Props) {
+  const { id } = params;
+  const post = await fetchData("products", { _id: id });
 
-  return ids.map((id) => id.id);
+  if (!post) return {};
+
+  return {
+    title: post.title
+  };
 }
 
-async function ProductItem({ params }: { params: { id: string } }) {
-  console.log(params.id);
-  const product = await fetchData("products", params.id);
+export async function generateStaticParams() {
+  const products: IProduct[] = await fetchData("products");
+
+  return products.map((p) => ({
+    id: p._id
+  }));
+}
+
+async function EditPost({ params }: Props) {
+  const { id } = params;
+  console.log(id);
+
+  const product: IProduct = await fetchData("products", { _id: id });
+
   if (!product) return;
+
   return (
-    <Suspense fallback={<div></div>}>
+    <section>
       <ProductDetails product={product} />
-    </Suspense>
+    </section>
   );
 }
 
-export default ProductItem;
+export default EditPost;
