@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { IProduct } from "@/types/product";
 import { Typography } from "@mui/material";
-import { productPageStyles } from "./style/productPageStyles";
 import Image from "next/legacy/image";
 import Link from "next/link";
+import { productPageStyles } from "./style/productPageStyles";
 
 interface Props {
   product: IProduct;

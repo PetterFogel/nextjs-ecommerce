@@ -2,10 +2,10 @@
 import { FC, useState } from "react";
 import { IProduct } from "@/types/product";
 import { ProductItem } from "./ProductItem";
-import { productPageStyles } from "./style/productPageStyles";
 import { filterProductsByCategory } from "@/common/functions/filterProductsByCategory";
 import { sortProductsByPrice } from "@/common/functions/sortProductsByPrice";
 import { ProductFilterPanel } from "./ProductFilterPanel";
+import { productPageStyles } from "./style/productPageStyles";
 
 interface Props {
   products: IProduct[];

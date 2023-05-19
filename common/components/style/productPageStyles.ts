@@ -46,7 +46,10 @@ export const productPageStyles = makeStyles()((theme: Theme) => ({
     display: "flex",
     flexDirection: "column",
     padding: theme.spacing(3, 1.5),
-    gap: theme.spacing(2)
+    gap: theme.spacing(2),
+    [theme.breakpoints.down("md")]: {
+      padding: theme.spacing(1, 1.5)
+    }
   },
   sizes: {
     display: "flex",
