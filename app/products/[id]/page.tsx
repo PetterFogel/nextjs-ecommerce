@@ -8,30 +8,8 @@ type Props = {
   };
 };
 
-export async function generateMetadata({ params }: Props) {
-  const { id } = params;
-  const post = await fetchData("products", id);
-
-  if (!post) return {};
-
-  return {
-    title: post.title
-  };
-}
-
-export async function generateStaticParams() {
-  const products: IProduct[] = await fetchData("products");
-
-  return products.map((p) => ({
-    id: p._id
-  }));
-}
-
 async function EditPost({ params }: Props) {
-  const { id } = params;
-  console.log(id);
-
-  const product: IProduct = await fetchData("products", id);
+  const product: IProduct = await fetchData("products", params.id);
 
   if (!product) return;
 
