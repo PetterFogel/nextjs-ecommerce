@@ -4,6 +4,7 @@ import React from "react";
 
 const ProductItem = async ({ params }: { params: { id: string } }) => {
   const product = await fetchData("products", params.id);
+  if (!product) return;
   return <ProductDetails product={product} />;
 };
 
