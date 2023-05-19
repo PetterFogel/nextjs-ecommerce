@@ -3,6 +3,7 @@ import { IProduct } from "@/types/product";
 import { Typography } from "@mui/material";
 import { productPageStyles } from "./style/productPageStyles";
 import Image from "next/legacy/image";
+import Link from "next/link";
 
 interface Props {
   product: IProduct;
@@ -11,11 +12,12 @@ export const ProductItem: FC<Props> = ({ product }) => {
   const { classes } = productPageStyles();
 
   return (
-    <div>
+    <Link href={`/products/${product._id}`}>
       <Image
         alt={product.title}
         src={product.imageUrl}
         className={classes.listImage}
+        priority={true}
         layout="responsive"
         width={"400"}
         height={"610"}
@@ -24,6 +26,6 @@ export const ProductItem: FC<Props> = ({ product }) => {
         {product.title}
       </Typography>
       <Typography variant="h4">{product.price + " SEK"}</Typography>
-    </div>
+    </Link>
   );
 };
