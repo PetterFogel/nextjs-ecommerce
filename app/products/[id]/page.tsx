@@ -1,6 +1,6 @@
 import { IProduct } from "@/types/product";
 import { fetchData } from "@/utils/fetchData";
-import { ProductDetails } from "../ProductDetails";
+import { ProductDetails } from "@/common/components/ProductDetails";
 
 interface Props {
   params: { id: string };
@@ -14,21 +14,8 @@ export async function generateStaticParams() {
   }));
 }
 
-async function fetchProducts(id: string) {
-  const response = await fetch(
-    `${process.env.REACT_APP_API_BASEURL}/api/products/${id}`,
-    {
-      next: {
-        revalidate: 60
-      }
-    }
-  );
-  const product = await response.json();
-  return product;
-}
-
 const ProductItem = async ({ params }: Props) => {
-  const product = await fetchProducts(params.id);
+  const product = await fetchData("products", params.id);
   return <ProductDetails product={product} />;
 };
 
