@@ -5,14 +5,17 @@ const nextConfig = {
     serverComponentsExternalPackages: ["mongoose"]
   },
   images: {
-    domains: ["lh3.googleusercontent.com", "shelta.se", "adaysmarch.centracdn.net"]
-  },
-  webpack(config) {
-    config.experiments = {
-      ...config.experiments,
-      topLevelAwait: true
-    };
-    return config;
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.**"
+      }
+    ],
+    domains: [
+      "lh3.googleusercontent.com",
+      "shelta.se",
+      "adaysmarch.centracdn.net"
+    ]
   }
 };
 

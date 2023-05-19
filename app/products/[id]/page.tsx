@@ -1,8 +1,7 @@
 import { IProduct } from "@/types/product";
-import axios from "axios";
 
 async function fetchProduct(id: string): Promise<IProduct> {
-  const response = await axios.get(
+  const response = await fetch(
     `${process.env.API_BASE_URL}/api/products/${id}`,
     {
       headers: {
@@ -10,7 +9,7 @@ async function fetchProduct(id: string): Promise<IProduct> {
       }
     }
   );
-  const contents = response.data;
+  const contents = await response.json();
   return contents;
 }
 
@@ -19,7 +18,7 @@ async function ProductItem({ params }: { params: { id: string } }) {
   if (!product) return;
   return (
     <>
-      <h2>Details</h2>
+      <h2>{product.title}</h2>
     </>
   );
 }
