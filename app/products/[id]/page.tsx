@@ -15,7 +15,7 @@ export const generateStaticParams = async () => {
 };
 
 const ProductItem = async ({ params }: Props) => {
-  const product = await fetchData(params.id);
+  const product = await fetchData("products", params.id);
   if (!product) return;
   return <ProductDetails product={product} />;
 };
