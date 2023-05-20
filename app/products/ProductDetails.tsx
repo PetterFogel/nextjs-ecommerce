@@ -2,7 +2,7 @@
 import { IProduct } from "@/types/product";
 import { shoeSizes } from "@/common/constants/shoeSizes";
 import { FC, useState } from "react";
-import { productPageStyles } from "@/common/components/style/productPageStyles";
+import { productPageStyles } from "./style/productPageStyles";
 import { Button, Divider, Rating, Stack, Typography } from "@mui/material";
 import Image from "next/legacy/image";
 

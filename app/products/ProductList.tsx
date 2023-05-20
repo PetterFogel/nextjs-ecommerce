@@ -1,11 +1,11 @@
 "use client";
-import { FC, useState } from "react";
 import { IProduct } from "@/types/product";
 import { ProductItem } from "./ProductItem";
-import { filterProductsByCategory } from "@/common/functions/filterProductsByCategory";
-import { sortProductsByPrice } from "@/common/functions/sortProductsByPrice";
-import { ProductFilterPanel } from "./ProductFilterPanel";
+import { FC, useState } from "react";
 import { productPageStyles } from "./style/productPageStyles";
+import { ProductFilterPanel } from "./ProductFilterPanel";
+import { sortProductsByPrice } from "@/common/functions/sortProductsByPrice";
+import { filterProductsByCategory } from "@/common/functions/filterProductsByCategory";
 
 interface Props {
   products: IProduct[];

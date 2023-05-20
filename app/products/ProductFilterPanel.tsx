@@ -1,6 +1,6 @@
 "use client";
-import { FC, useState, MouseEvent } from "react";
 import { Categories } from "../../common/constants/enums";
+import { FC, useState, MouseEvent } from "react";
 import { Button, Menu, MenuItem, Stack } from "@mui/material";
 
 interface Props {

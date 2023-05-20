@@ -1,5 +1,5 @@
 import { fetchData } from "@/utils/fetchData";
-import { ProductList } from "@/common/components/ProductList";
+import { ProductList } from "./ProductList";
 
 const ProductsPage = async () => {
   const products = await fetchData("products");
