@@ -52,7 +52,7 @@ export const ProductDialogForm: FC<Props> = ({
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <DialogContent sx={{ p: isBreakpointSm ? 1 : 2 }}>
+      <DialogContent className={classes.dialogHolder}>
         <Grid container spacing={1}>
           <Grid item xs={12}>
             <FormikTextField

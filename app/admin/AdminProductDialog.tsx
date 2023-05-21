@@ -3,6 +3,7 @@ import { FC } from "react";
 import { IProduct } from "@/types/product";
 import { Dialog, Typography } from "@mui/material";
 import { ProductDialogForm } from "./AdminProductDialogForm";
+import { adminPageStyles } from "./style/adminPageStyles";
 
 interface Props {
   product?: IProduct;
@@ -15,13 +16,14 @@ export const ProductDialog: FC<Props> = ({
   isDialogOpen,
   onDialogCloseClick
 }) => {
+  const { classes } = adminPageStyles();
   return (
     <Dialog
       maxWidth="sm"
       open={isDialogOpen}
       onClose={onDialogCloseClick}
       fullWidth>
-      <Typography variant="h3" p={2}>
+      <Typography variant="h3" className={classes.dialogHolder}>
         {product ? "Edit product" : "Add a product"}
       </Typography>
       <ProductDialogForm
