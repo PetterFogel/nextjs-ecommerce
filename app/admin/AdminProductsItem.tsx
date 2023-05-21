@@ -7,9 +7,13 @@ import Image from "next/legacy/image";
 
 interface Props {
   product: IProduct;
+  onDialogOpenClick: (productId?: string) => void;
 }
 
-export const AdminProductsItem: FC<Props> = ({ product }) => {
+export const AdminProductsItem: FC<Props> = ({
+  product,
+  onDialogOpenClick
+}) => {
   return (
     <TableRow>
       <TableCell style={{ width: "4rem", height: "4rem", padding: 8 }}>
@@ -28,7 +32,7 @@ export const AdminProductsItem: FC<Props> = ({ product }) => {
       <TableCell>{product.rating}</TableCell>
       <TableCell>
         <Tooltip title={"Edit"} placement="top">
-          <IconButton disabled>
+          <IconButton onClick={() => onDialogOpenClick(product._id)}>
             <EditIcon color="secondary" sx={{ cursor: "pointer" }} />
           </IconButton>
         </Tooltip>
