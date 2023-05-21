@@ -69,8 +69,8 @@ export const headerPageStyles = makeStyles()((theme: Theme) => ({
     }
   },
   cartIcon: {
-    width: "24px",
-    height: "24px",
+    width: "22px",
+    height: "22px",
     position: "relative",
     display: "flex",
     alignItems: "center",

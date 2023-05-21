@@ -80,7 +80,7 @@ export const theme = createTheme({
             fontWeight: 600,
             letterSpacing: "1px",
             borderRadius: "0px",
-            background: "#222",
+            background: "#333",
             color: "#fff"
           }
         },
