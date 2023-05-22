@@ -1,6 +1,6 @@
-import { connectToDB } from "@/lib/database";
 import Product from "@/models/product";
 import { IProduct } from "@/types/product";
+import { connectToDB } from "@/lib/database";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
@@ -43,15 +43,15 @@ export const PUT = async (
 };
 
 export const DELETE = async (
-  _: NextResponse,
+  _: NextRequest,
   { params }: { params: { id: string } }
 ) => {
   try {
     await connectToDB();
 
     await Product.findByIdAndRemove(params.id);
-    return new Response("Product deleted successfully", { status: 200 });
+    return new NextResponse("Product deleted successfully", { status: 200 });
   } catch (error) {
-    return new Response("Failed to remove product", { status: 500 });
+    return new NextResponse("Failed to remove product", { status: 500 });
   }
 };

@@ -123,6 +123,9 @@ export const theme = createTheme({
     },
     MuiDivider: {
       styleOverrides: { root: { margin: "15px 0px", background: "#ddd" } }
+    },
+    MuiMenuItem: {
+      defaultProps: { style: { opacity: 1 } }
     }
   }
 });
