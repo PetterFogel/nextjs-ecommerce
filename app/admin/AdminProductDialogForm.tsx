@@ -1,13 +1,15 @@
-import { FC } from "react";
+import { FC, useState, MouseEvent } from "react";
 import {
   Box,
   Button,
   DialogContent,
+  Divider,
   FormControl,
   FormHelperText,
   Grid,
   InputLabel,
   ListItemText,
+  Menu,
   MenuItem,
   OutlinedInput,
   Select,
@@ -27,6 +29,7 @@ import { productValidateHandler } from "./helpers/productValidateHandler";
 import { setInitialValuesHandler } from "./helpers/setInitialValuesHandler";
 
 const modifyProduct = async (values: IProduct, method: string, id?: string) => {
+  console.log(method);
   await fetch(`/api/products/${id || ""}`, {
     method,
     body: JSON.stringify(values)
@@ -45,6 +48,13 @@ export const ProductDialogForm: FC<Props> = ({
   const { classes } = adminPageStyles();
   const theme = useTheme();
   const isBreakpointSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const openMenuHandler = (event: MouseEvent<HTMLButtonElement>) =>
+    setAnchorEl(event.currentTarget);
+
+  const closeMenuHandler = () => setAnchorEl(null);
 
   const validate = (values: IProduct) => productValidateHandler(values);
 
@@ -53,12 +63,21 @@ export const ProductDialogForm: FC<Props> = ({
     validate,
     enableReinitialize: false,
     validateOnMount: true,
-    onSubmit: async (values, { resetForm }) => {
+    onSubmit: async (values) => {
+      onDialogCloseClick();
       if (product) return modifyProduct(values, HttpMethod.PUT, product._id);
-      await modifyProduct(values, HttpMethod.POST);
-      resetForm();
+      return modifyProduct(values, HttpMethod.POST);
     }
   });
+
+  const deleteProductHandler = async () => {
+    if (product)
+      await fetch(`/api/products/${product._id}`, {
+        method: HttpMethod.DELETE
+      });
+    setAnchorEl(null);
+    onDialogCloseClick();
+  };
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -174,13 +193,31 @@ export const ProductDialogForm: FC<Props> = ({
             : classes.addDialogButtonHolder
         }>
         {product && (
-          <Button
-            className={classes.actionButton}
-            variant={"text"}
-            size={isBreakpointSm ? "small" : "medium"}
-            color="error">
-            DELETE
-          </Button>
+          <>
+            <Button
+              className={classes.actionButton}
+              variant={"text"}
+              size={isBreakpointSm ? "small" : "medium"}
+              onClick={openMenuHandler}
+              color="error">
+              DELETE
+            </Button>
+            <Menu
+              id="basic-menu"
+              anchorEl={anchorEl}
+              open={open}
+              onClose={closeMenuHandler}
+              MenuListProps={{
+                "aria-labelledby": "basic-button"
+              }}>
+              <MenuItem disabled>Are you sure?</MenuItem>
+              <Divider />
+              <MenuItem onClick={deleteProductHandler} color="error">
+                Yes, delete
+              </MenuItem>
+              <MenuItem onClick={closeMenuHandler}>Cancel</MenuItem>
+            </Menu>
+          </>
         )}
         <Button
           className={classes.actionButton}
