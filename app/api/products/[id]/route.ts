@@ -28,20 +28,30 @@ export const PUT = async (
   try {
     await connectToDB();
 
-    const newProduct: IProduct = await req.json();
-    const updatedProduct = await Product.findByIdAndUpdate(
-      params.id,
-      newProduct,
-      {
-        new: true
-      }
-    );
+    const values: IProduct = await req.json();
+    const updatedProduct = await Product.findByIdAndUpdate(params.id, values, {
+      new: true
+    });
 
     await updatedProduct.save();
-    return new NextResponse("Successfully updated the Product", {
+    return new NextResponse("Successfully updated the Product!", {
       status: 200
     });
   } catch (error) {
-    return new NextResponse("Error updating product", { status: 400 });
+    return new NextResponse("Failed to update product", { status: 400 });
+  }
+};
+
+export const DELETE = async (
+  _: NextResponse,
+  { params }: { params: { id: string } }
+) => {
+  try {
+    await connectToDB();
+
+    await Product.findByIdAndRemove(params.id);
+    return new Response("Product deleted successfully", { status: 200 });
+  } catch (error) {
+    return new Response("Failed to remove product", { status: 500 });
   }
 };
