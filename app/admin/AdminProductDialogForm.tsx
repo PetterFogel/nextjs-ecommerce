@@ -17,6 +17,7 @@ import {
 import { IProduct } from "@/types/product";
 import { useFormik } from "formik";
 import { shoeSizes } from "@/common/constants/shoeSizes";
+import { HttpMethod } from "@/common/constants/enums";
 import { categories } from "@/common/constants/categories";
 import { selectProps } from "@/common/constants/selectProps";
 import { LoadingButton } from "@mui/lab";
@@ -24,6 +25,13 @@ import { adminPageStyles } from "./style/adminPageStyles";
 import { FormikTextField } from "../../common/components/formik-text-field/FormikTextField";
 import { productValidateHandler } from "./helpers/productValidateHandler";
 import { setInitialValuesHandler } from "./helpers/setInitialValuesHandler";
+
+const modifyProduct = async (values: IProduct, method: string, id?: string) => {
+  await fetch(`/api/products/${id || ""}`, {
+    method,
+    body: JSON.stringify(values)
+  });
+};
 
 interface Props {
   product?: IProduct;
@@ -45,8 +53,10 @@ export const ProductDialogForm: FC<Props> = ({
     validate,
     enableReinitialize: false,
     validateOnMount: true,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values, { resetForm }) => {
+      if (product) return modifyProduct(values, HttpMethod.PUT, product._id);
+      await modifyProduct(values, HttpMethod.POST);
+      resetForm();
     }
   });
 
