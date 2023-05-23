@@ -7,8 +7,14 @@ export const productsApi = createApi({
   endpoints: (builder) => ({
     fetchProducts: builder.query<IProduct[], void>({
       query: () => "products"
+    }),
+    fetchProductById: builder.query<
+      IProduct,
+      { productId: string | undefined }
+    >({
+      query: ({ productId }) => `products/${productId}`
     })
   })
 });
 
-export const { useFetchProductsQuery } = productsApi;
+export const { useFetchProductsQuery, useFetchProductByIdQuery } = productsApi;
