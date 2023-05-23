@@ -196,6 +196,7 @@ export const ProductDialogForm: FC<Props> = ({
           <>
             <Button
               className={classes.actionButton}
+              disabled
               variant={"text"}
               size={isBreakpointSm ? "small" : "medium"}
               onClick={openMenuHandler}
@@ -222,6 +223,7 @@ export const ProductDialogForm: FC<Props> = ({
         <Button
           className={classes.actionButton}
           variant={"outlined"}
+          disabled
           size={isBreakpointSm ? "small" : "medium"}
           color="secondary"
           sx={{ marginLeft: "auto" }}
@@ -230,6 +232,7 @@ export const ProductDialogForm: FC<Props> = ({
         </Button>
         <LoadingButton
           className={classes.actionButton}
+          disabled
           variant={"contained"}
           color="success"
           size={isBreakpointSm ? "small" : "medium"}
