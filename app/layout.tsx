@@ -1,5 +1,6 @@
 import { Header } from "@/common/components/header/Header";
 import { MuiProvider } from "@/common/components/theme-provider/ThemeProvider";
+import { ReduxProvider } from "@/common/components/redux-provider/ReduxProvider";
 import { FC, ReactNode } from "react";
 import { Source_Sans_Pro } from "next/font/google";
 import "./globals.css";
@@ -22,10 +23,12 @@ const RootLayout: FC<Props> = ({ children }) => {
   return (
     <html lang="en">
       <body className={sourceSansPro.className}>
-        <MuiProvider>
-          <Header />
-          {children}
-        </MuiProvider>
+        <ReduxProvider>
+          <MuiProvider>
+            <Header />
+            {children}
+          </MuiProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
