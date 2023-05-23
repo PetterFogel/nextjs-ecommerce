@@ -1,3 +1,4 @@
+import { HttpMethod } from "@/common/constants/enums";
 import { IProduct } from "@/types/product";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
@@ -13,8 +14,19 @@ export const productsApi = createApi({
       { productId: string | undefined }
     >({
       query: ({ productId }) => `products/${productId}`
+    }),
+    addProduct: builder.mutation<IProduct, Partial<IProduct>>({
+      query: (body) => ({
+        url: "products",
+        method: HttpMethod.POST,
+        body
+      })
     })
   })
 });
 
-export const { useFetchProductsQuery, useFetchProductByIdQuery } = productsApi;
+export const {
+  useFetchProductsQuery,
+  useFetchProductByIdQuery,
+  useAddProductMutation
+} = productsApi;

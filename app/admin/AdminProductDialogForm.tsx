@@ -12,9 +12,7 @@ import {
   Menu,
   MenuItem,
   OutlinedInput,
-  Select,
-  useMediaQuery,
-  useTheme
+  Select
 } from "@mui/material";
 import { IProduct } from "@/types/product";
 import { useFormik } from "formik";
@@ -27,6 +25,7 @@ import { adminPageStyles } from "./style/adminPageStyles";
 import { FormikTextField } from "../../common/components/formik-text-field/FormikTextField";
 import { productValidateHandler } from "./helpers/productValidateHandler";
 import { setInitialValuesHandler } from "./helpers/setInitialValuesHandler";
+import { useAddProductMutation } from "@/redux/api/productsApi";
 
 const modifyProduct = async (values: IProduct, method: string, id?: string) => {
   console.log(method);
@@ -46,8 +45,7 @@ export const ProductDialogForm: FC<Props> = ({
   onDialogCloseClick
 }) => {
   const { classes } = adminPageStyles();
-  const theme = useTheme();
-  const isBreakpointSm = useMediaQuery(theme.breakpoints.down("sm"));
+  const [addProduct] = useAddProductMutation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -66,7 +64,7 @@ export const ProductDialogForm: FC<Props> = ({
     onSubmit: async (values) => {
       onDialogCloseClick();
       if (product) return modifyProduct(values, HttpMethod.PUT, product._id);
-      return modifyProduct(values, HttpMethod.POST);
+      addProduct(values);
     }
   });
 
@@ -198,7 +196,7 @@ export const ProductDialogForm: FC<Props> = ({
               className={classes.actionButton}
               disabled
               variant={"text"}
-              size={isBreakpointSm ? "small" : "medium"}
+              size={"small"}
               onClick={openMenuHandler}
               color="error">
               DELETE
@@ -224,7 +222,7 @@ export const ProductDialogForm: FC<Props> = ({
           className={classes.actionButton}
           variant={"outlined"}
           disabled
-          size={isBreakpointSm ? "small" : "medium"}
+          size={"small"}
           color="secondary"
           sx={{ marginLeft: "auto" }}
           onClick={onDialogCloseClick}>
@@ -232,10 +230,9 @@ export const ProductDialogForm: FC<Props> = ({
         </Button>
         <LoadingButton
           className={classes.actionButton}
-          disabled
           variant={"contained"}
           color="success"
-          size={isBreakpointSm ? "small" : "medium"}
+          size={"small"}
           type="submit">
           SAVE
         </LoadingButton>
