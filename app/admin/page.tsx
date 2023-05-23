@@ -1,9 +1,11 @@
-import { fetchData } from "@/utils/fetchData";
+"use client";
+
+import { useFetchProductsQuery } from "@/redux/api/productsApi";
 import { AdminProductsList } from "./AdminProductsList";
 
 const AdminPage = async () => {
-  const products = await fetchData("products");
-
+  const { data: products } = useFetchProductsQuery();
+  if (!products) return;
   return <AdminProductsList products={products} />;
 };
 
