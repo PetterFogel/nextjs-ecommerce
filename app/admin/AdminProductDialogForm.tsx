@@ -17,7 +17,6 @@ import {
 import { IProduct } from "@/types/product";
 import { useFormik } from "formik";
 import { shoeSizes } from "@/common/constants/shoeSizes";
-import { HttpMethod } from "@/common/constants/enums";
 import { categories } from "@/common/constants/categories";
 import { selectProps } from "@/common/constants/selectProps";
 import { LoadingButton } from "@mui/lab";
@@ -27,6 +26,7 @@ import { productValidateHandler } from "./helpers/productValidateHandler";
 import { setInitialValuesHandler } from "./helpers/setInitialValuesHandler";
 import {
   useAddProductMutation,
+  useDeleteProductMutation,
   useUpdateProductMutation
 } from "@/redux/api/productsApi";
 
@@ -42,6 +42,7 @@ export const ProductDialogForm: FC<Props> = ({
   const { classes } = adminPageStyles();
   const [addProduct] = useAddProductMutation();
   const [updateProduct] = useUpdateProductMutation();
+  const [deleteProduct] = useDeleteProductMutation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -65,10 +66,7 @@ export const ProductDialogForm: FC<Props> = ({
   });
 
   const deleteProductHandler = async () => {
-    if (product)
-      await fetch(`/api/products/${product._id}`, {
-        method: HttpMethod.DELETE
-      });
+    if (product) deleteProduct(product._id);
     setAnchorEl(null);
     onDialogCloseClick();
   };

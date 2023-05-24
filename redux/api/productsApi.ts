@@ -31,6 +31,17 @@ export const productsApi = createApi({
         method: HttpMethod.PUT,
         body: values
       })
+    }),
+    deleteProduct: builder.mutation<
+      { id: string | undefined },
+      string | undefined
+    >({
+      query(id) {
+        return {
+          url: `products/${id}`,
+          method: HttpMethod.DELETE
+        };
+      }
     })
   })
 });
@@ -39,5 +50,6 @@ export const {
   useFetchProductsQuery,
   useFetchProductByIdQuery,
   useAddProductMutation,
-  useUpdateProductMutation
+  useUpdateProductMutation,
+  useDeleteProductMutation
 } = productsApi;
