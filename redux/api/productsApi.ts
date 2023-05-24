@@ -21,6 +21,16 @@ export const productsApi = createApi({
         method: HttpMethod.POST,
         body
       })
+    }),
+    updateProduct: builder.mutation<
+      void,
+      Pick<IProduct, "_id"> & Partial<IProduct>
+    >({
+      query: ({ _id, ...values }) => ({
+        url: `products/${_id}`,
+        method: HttpMethod.PUT,
+        body: values
+      })
     })
   })
 });
@@ -28,5 +38,6 @@ export const productsApi = createApi({
 export const {
   useFetchProductsQuery,
   useFetchProductByIdQuery,
-  useAddProductMutation
+  useAddProductMutation,
+  useUpdateProductMutation
 } = productsApi;

@@ -25,15 +25,10 @@ import { adminPageStyles } from "./style/adminPageStyles";
 import { FormikTextField } from "../../common/components/formik-text-field/FormikTextField";
 import { productValidateHandler } from "./helpers/productValidateHandler";
 import { setInitialValuesHandler } from "./helpers/setInitialValuesHandler";
-import { useAddProductMutation } from "@/redux/api/productsApi";
-
-const modifyProduct = async (values: IProduct, method: string, id?: string) => {
-  console.log(method);
-  await fetch(`/api/products/${id || ""}`, {
-    method,
-    body: JSON.stringify(values)
-  });
-};
+import {
+  useAddProductMutation,
+  useUpdateProductMutation
+} from "@/redux/api/productsApi";
 
 interface Props {
   product?: IProduct;
@@ -46,6 +41,7 @@ export const ProductDialogForm: FC<Props> = ({
 }) => {
   const { classes } = adminPageStyles();
   const [addProduct] = useAddProductMutation();
+  const [updateProduct] = useUpdateProductMutation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -63,7 +59,7 @@ export const ProductDialogForm: FC<Props> = ({
     validateOnMount: true,
     onSubmit: async (values) => {
       onDialogCloseClick();
-      if (product) return modifyProduct(values, HttpMethod.PUT, product._id);
+      if (product) return updateProduct({ _id: product._id, ...values });
       addProduct(values);
     }
   });
@@ -194,7 +190,6 @@ export const ProductDialogForm: FC<Props> = ({
           <>
             <Button
               className={classes.actionButton}
-              disabled
               variant={"text"}
               size={"small"}
               onClick={openMenuHandler}
