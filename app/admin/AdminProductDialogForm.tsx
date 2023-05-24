@@ -1,6 +1,5 @@
 import { FC, useState, MouseEvent } from "react";
 import {
-  Box,
   Button,
   DialogContent,
   Divider,
@@ -12,7 +11,8 @@ import {
   Menu,
   MenuItem,
   OutlinedInput,
-  Select
+  Select,
+  Stack
 } from "@mui/material";
 import { IProduct } from "@/types/product";
 import { useFormik } from "formik";
@@ -178,12 +178,11 @@ export const ProductDialogForm: FC<Props> = ({
           </Grid>
         </Grid>
       </DialogContent>
-      <Box
-        className={
-          product
-            ? classes.editDialogButtonHolder
-            : classes.addDialogButtonHolder
-        }>
+      <Stack
+        direction="row"
+        justifyContent={product?._id ? "space-between" : "flex-end"}
+        spacing={1}
+        padding={1}>
         {product && (
           <>
             <Button
@@ -211,25 +210,26 @@ export const ProductDialogForm: FC<Props> = ({
             </Menu>
           </>
         )}
-        <Button
-          className={classes.actionButton}
-          variant={"outlined"}
-          disabled
-          size={"small"}
-          color="secondary"
-          sx={{ marginLeft: "auto" }}
-          onClick={onDialogCloseClick}>
-          CANCEL
-        </Button>
-        <LoadingButton
-          className={classes.actionButton}
-          variant={"contained"}
-          color="success"
-          size={"small"}
-          type="submit">
-          SAVE
-        </LoadingButton>
-      </Box>
+        <Stack direction="row" spacing={1}>
+          <Button
+            className={classes.actionButton}
+            variant={"outlined"}
+            size={"small"}
+            color="secondary"
+            sx={{ marginLeft: "auto" }}
+            onClick={onDialogCloseClick}>
+            CANCEL
+          </Button>
+          <LoadingButton
+            className={classes.actionButton}
+            variant={"contained"}
+            color="success"
+            size={"small"}
+            type="submit">
+            SAVE
+          </LoadingButton>
+        </Stack>
+      </Stack>
     </form>
   );
 };

@@ -19,24 +19,6 @@ export const adminPageStyles = makeStyles()((theme: Theme) => ({
       padding: theme.spacing(1)
     }
   },
-  addDialogButtonHolder: {
-    padding: theme.spacing(1.5, 2),
-    display: "flex",
-    justifyContent: "flex-end",
-    gap: theme.spacing(1),
-    [theme.breakpoints.down("sm")]: {
-      padding: theme.spacing(1)
-    }
-  },
-  editDialogButtonHolder: {
-    padding: theme.spacing(1.5, 2),
-    display: "flex",
-    justifyContent: "space-between",
-    gap: theme.spacing(1),
-    [theme.breakpoints.down("sm")]: {
-      padding: theme.spacing(1)
-    }
-  },
   actionButton: {
     width: "7rem",
     [theme.breakpoints.down("sm")]: {
