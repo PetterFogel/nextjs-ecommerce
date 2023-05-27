@@ -40,9 +40,9 @@ export const ProductDialogForm: FC<Props> = ({
   onDialogCloseClick
 }) => {
   const { classes } = adminPageStyles();
-  const [addProduct] = useAddProductMutation();
-  const [updateProduct] = useUpdateProductMutation();
-  const [deleteProduct] = useDeleteProductMutation();
+  const [addProduct, { isLoading: isAdding }] = useAddProductMutation();
+  const [updateProduct, { isLoading: isUpdating }] = useUpdateProductMutation();
+  const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -59,17 +59,18 @@ export const ProductDialogForm: FC<Props> = ({
     enableReinitialize: false,
     validateOnMount: true,
     onSubmit: async (values) => {
-      onDialogCloseClick();
-      if (product) return updateProduct({ _id: product._id, ...values });
-      addProduct(values);
+      if (product) return await updateProduct({ _id: product._id, ...values });
+      await addProduct(values);
     }
   });
 
   const deleteProductHandler = async () => {
-    if (product) deleteProduct(product._id);
     setAnchorEl(null);
+    if (product) await deleteProduct(product._id);
     onDialogCloseClick();
   };
+
+  const isLoading = isAdding || isUpdating || isDeleting;
 
   return (
     <form onSubmit={formik.handleSubmit}>
@@ -80,6 +81,7 @@ export const ProductDialogForm: FC<Props> = ({
               id={"title"}
               type={"text"}
               label={"Title"}
+              disabled={isLoading}
               helperText={formik.touched.title && formik.errors.title}
               error={formik.touched.title && Boolean(formik.errors.title)}
               formik={formik}
@@ -90,6 +92,7 @@ export const ProductDialogForm: FC<Props> = ({
               id={"imageUrl"}
               type={"url"}
               label={"Image url"}
+              disabled={isLoading}
               helperText={formik.touched.imageUrl && formik.errors.imageUrl}
               error={formik.touched.imageUrl && Boolean(formik.errors.imageUrl)}
               formik={formik}
@@ -100,6 +103,7 @@ export const ProductDialogForm: FC<Props> = ({
               fullWidth
               size={"small"}
               margin="dense"
+              disabled={isLoading}
               error={
                 formik.touched.category && Boolean(formik.errors.category)
               }>
@@ -124,6 +128,7 @@ export const ProductDialogForm: FC<Props> = ({
               fullWidth
               size={"small"}
               margin="dense"
+              disabled={isLoading}
               error={formik.touched.sizes && Boolean(formik.errors.sizes)}>
               <InputLabel>Sizes</InputLabel>
               <Select
@@ -150,6 +155,7 @@ export const ProductDialogForm: FC<Props> = ({
               type="number"
               label="Price"
               adornmentSymbol="SEK"
+              disabled={isLoading}
               helperText={formik.touched.price && formik.errors.price}
               error={formik.touched.price && Boolean(formik.errors.price)}
               formik={formik}
@@ -160,6 +166,7 @@ export const ProductDialogForm: FC<Props> = ({
               id="rating"
               type="number"
               label="Rating"
+              disabled={isLoading}
               helperText={formik.touched.rating && formik.errors.rating}
               error={formik.touched.rating && Boolean(formik.errors.rating)}
               formik={formik}
@@ -171,6 +178,7 @@ export const ProductDialogForm: FC<Props> = ({
               type="number"
               label="Product description"
               multiline
+              disabled={isLoading}
               helperText={formik.touched.info && formik.errors.info}
               error={formik.touched.info && Boolean(formik.errors.info)}
               formik={formik}
@@ -186,11 +194,12 @@ export const ProductDialogForm: FC<Props> = ({
         {product && (
           <>
             <Button
-              className={classes.actionButton}
-              variant={"text"}
+              color="error"
               size={"small"}
-              onClick={openMenuHandler}
-              color="error">
+              variant={"text"}
+              disabled={isLoading}
+              className={classes.actionButton}
+              onClick={openMenuHandler}>
               DELETE
             </Button>
             <Menu
@@ -212,20 +221,22 @@ export const ProductDialogForm: FC<Props> = ({
         )}
         <Stack direction="row" spacing={1}>
           <Button
-            className={classes.actionButton}
-            variant={"outlined"}
             size={"small"}
             color="secondary"
+            variant={"outlined"}
             sx={{ marginLeft: "auto" }}
+            disabled={isLoading}
+            className={classes.actionButton}
             onClick={onDialogCloseClick}>
             CANCEL
           </Button>
           <LoadingButton
-            className={classes.actionButton}
-            variant={"contained"}
-            color="success"
+            type="submit"
             size={"small"}
-            type="submit">
+            color="success"
+            variant={"contained"}
+            disabled={isLoading}
+            className={classes.actionButton}>
             SAVE
           </LoadingButton>
         </Stack>
