@@ -235,7 +235,7 @@ export const ProductDialogForm: FC<Props> = ({
             size={"small"}
             color="success"
             variant={"contained"}
-            disabled={isLoading}
+            loading={isLoading}
             className={classes.actionButton}>
             SAVE
           </LoadingButton>
