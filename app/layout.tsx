@@ -3,6 +3,7 @@ import { MuiProvider } from "@/common/components/theme-provider/ThemeProvider";
 import { ReduxProvider } from "@/common/components/redux-provider/ReduxProvider";
 import { FC, ReactNode } from "react";
 import { Source_Sans_Pro } from "next/font/google";
+import { NotificationAlert } from "@/common/components/notification-alert/NotificationAlert";
 import "./globals.css";
 
 const sourceSansPro = Source_Sans_Pro({
@@ -25,6 +26,7 @@ const RootLayout: FC<Props> = ({ children }) => {
       <body className={sourceSansPro.className}>
         <ReduxProvider>
           <MuiProvider>
+            <NotificationAlert />
             <Header />
             {children}
           </MuiProvider>
