@@ -1,27 +1,23 @@
-import { FC, useState, MouseEvent } from "react";
+import { FC } from "react";
 import {
-  Button,
   DialogContent,
-  Divider,
   FormControl,
   FormHelperText,
   Grid,
   InputLabel,
   ListItemText,
-  Menu,
   MenuItem,
   OutlinedInput,
-  Select,
-  Stack
+  Select
 } from "@mui/material";
 import { IProduct } from "@/types/product";
 import { useFormik } from "formik";
 import { shoeSizes } from "@/common/constants/shoeSizes";
 import { categories } from "@/common/constants/categories";
 import { selectProps } from "@/common/constants/selectProps";
-import { LoadingButton } from "@mui/lab";
 import { adminPageStyles } from "./style/adminPageStyles";
 import { FormikTextField } from "../../common/components/formik-text-field/FormikTextField";
+import { AdminDialogFormAction } from "./AdminDialogFormAction";
 import { productValidateHandler } from "./helpers/productValidateHandler";
 import { setInitialValuesHandler } from "./helpers/setInitialValuesHandler";
 import {
@@ -43,13 +39,6 @@ export const ProductDialogForm: FC<Props> = ({
   const [addProduct, { isLoading: isAdding }] = useAddProductMutation();
   const [updateProduct, { isLoading: isUpdating }] = useUpdateProductMutation();
   const [deleteProduct, { isLoading: isDeleting }] = useDeleteProductMutation();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-
-  const openMenuHandler = (event: MouseEvent<HTMLButtonElement>) =>
-    setAnchorEl(event.currentTarget);
-
-  const closeMenuHandler = () => setAnchorEl(null);
 
   const validate = (values: IProduct) => productValidateHandler(values);
 
@@ -63,12 +52,6 @@ export const ProductDialogForm: FC<Props> = ({
       await addProduct(values);
     }
   });
-
-  const deleteProductHandler = async () => {
-    setAnchorEl(null);
-    if (product) await deleteProduct(product._id);
-    onDialogCloseClick();
-  };
 
   const isLoading = isAdding || isUpdating || isDeleting;
 
@@ -186,61 +169,12 @@ export const ProductDialogForm: FC<Props> = ({
           </Grid>
         </Grid>
       </DialogContent>
-      <Stack
-        direction="row"
-        justifyContent={product?._id ? "space-between" : "flex-end"}
-        spacing={1}
-        padding={1}>
-        {product && (
-          <>
-            <Button
-              color="error"
-              size={"small"}
-              variant={"text"}
-              disabled={isLoading}
-              className={classes.actionButton}
-              onClick={openMenuHandler}>
-              DELETE
-            </Button>
-            <Menu
-              id="basic-menu"
-              anchorEl={anchorEl}
-              open={open}
-              onClose={closeMenuHandler}
-              MenuListProps={{
-                "aria-labelledby": "basic-button"
-              }}>
-              <MenuItem disabled>Are you sure?</MenuItem>
-              <Divider />
-              <MenuItem onClick={deleteProductHandler} color="error">
-                Yes, delete
-              </MenuItem>
-              <MenuItem onClick={closeMenuHandler}>Cancel</MenuItem>
-            </Menu>
-          </>
-        )}
-        <Stack direction="row" spacing={1}>
-          <Button
-            size={"small"}
-            color="secondary"
-            variant={"outlined"}
-            sx={{ marginLeft: "auto" }}
-            disabled={isLoading}
-            className={classes.actionButton}
-            onClick={onDialogCloseClick}>
-            CANCEL
-          </Button>
-          <LoadingButton
-            type="submit"
-            size={"small"}
-            color="success"
-            variant={"contained"}
-            loading={isLoading}
-            className={classes.actionButton}>
-            SAVE
-          </LoadingButton>
-        </Stack>
-      </Stack>
+      <AdminDialogFormAction
+        product={product}
+        isLoading={isLoading}
+        onDialogCloseClick={onDialogCloseClick}
+        deleteProduct={deleteProduct}
+      />
     </form>
   );
 };
