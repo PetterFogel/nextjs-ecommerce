@@ -6,9 +6,11 @@ import ShoppingIcon from "../../../assets/shopping-bag.svg";
 import Image from "next/legacy/image";
 
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 export const Header: FC = () => {
   const { classes } = headerPageStyles();
+  const { data: session } = useSession();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -37,12 +39,14 @@ export const Header: FC = () => {
             onClick={() => setIsMenuOpen(false)}>
             <li>ABOUT</li>
           </Link>
-          <Link
-            href="/admin"
-            className={classes.link}
-            onClick={() => setIsMenuOpen(false)}>
-            <li>ADMIN</li>
-          </Link>
+          {session?.user && (
+            <Link
+              href="/admin"
+              className={classes.link}
+              onClick={() => setIsMenuOpen(false)}>
+              <li>ADMIN</li>
+            </Link>
+          )}
         </ul>
         <Link
           href="/checkout"

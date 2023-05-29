@@ -33,7 +33,6 @@ export const headerPageStyles = makeStyles()((theme: Theme) => ({
     display: "flex",
     justifyContent: "space-between",
     listStyle: "none",
-    width: "15rem",
     [theme.breakpoints.down("lg")]: {
       position: "fixed",
       flexDirection: "column",
@@ -51,18 +50,16 @@ export const headerPageStyles = makeStyles()((theme: Theme) => ({
     }
   },
   cartLink: {
-    marginLeft: "1.5rem",
     letterSpacing: "1px",
     fontSize: "0.9rem",
     color: "#333",
-    [theme.breakpoints.down("lg")]: {
-      marginLeft: "0rem"
-    }
+    paddingLeft: theme.spacing(1)
   },
   link: {
     letterSpacing: "1px",
     fontSize: "0.9rem",
     color: "#333",
+    padding: theme.spacing(0, 1),
     [theme.breakpoints.down("lg")]: {
       fontSize: "1.3rem",
       margin: "1rem 0rem"
