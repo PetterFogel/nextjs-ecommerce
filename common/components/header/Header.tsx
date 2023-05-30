@@ -6,7 +6,8 @@ import ShoppingIcon from "../../../assets/shopping-bag.svg";
 import Image from "next/legacy/image";
 
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { AdminMenu } from "../admin-menu/AdminMenu";
 
 export const Header: FC = () => {
   const { classes } = headerPageStyles();
@@ -39,12 +40,12 @@ export const Header: FC = () => {
             onClick={() => setIsMenuOpen(false)}>
             <li>ABOUT</li>
           </Link>
-          {session?.user && (
+          {!session?.user && (
             <Link
-              href="/admin"
+              href="/about"
               className={classes.link}
-              onClick={() => setIsMenuOpen(false)}>
-              <li>ADMIN</li>
+              onClick={() => signIn()}>
+              <li>SIGN IN</li>
             </Link>
           )}
         </ul>
@@ -56,6 +57,7 @@ export const Header: FC = () => {
             <Image src={ShoppingIcon} alt="Cart icon" />
           </div>
         </Link>
+        <AdminMenu />
         <BurgerMenu
           value={isMenuOpen}
           onBurgerMenuOpenClick={() => setIsMenuOpen(!isMenuOpen)}
