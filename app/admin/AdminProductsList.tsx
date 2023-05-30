@@ -12,7 +12,7 @@ import { IProduct } from "@/types/product";
 import { FC, useState } from "react";
 import { ProductDialog } from "./AdminProductDialog";
 import { adminPageStyles } from "./style/adminPageStyles";
-import { AdminFilterPanel } from "./AdminsFilterPanel";
+import { AdminFilterPanel } from "./AdminFilterPanel";
 import { AdminProductsItem } from "./AdminProductsItem";
 
 interface Props {
