@@ -28,25 +28,23 @@ export const Header: FC = () => {
           style={{
             right: isMenuOpen ? "0%" : "-100%"
           }}>
-          <Link
-            href="/products"
-            className={classes.link}
-            onClick={() => setIsMenuOpen(false)}>
-            <li className="link">PRODUCTS</li>
-          </Link>
-          <Link
-            href="/about"
-            className={classes.link}
-            onClick={() => setIsMenuOpen(false)}>
-            <li>ABOUT</li>
-          </Link>
-          {!session?.user && (
-            <Link
-              href="/about"
-              className={classes.link}
-              onClick={() => signIn()}>
-              <li>SIGN IN</li>
+          <li className={classes.link}>
+            <Link href="/products" onClick={() => setIsMenuOpen(false)}>
+              PRODUCTS
             </Link>
+          </li>
+          <li className={classes.link}>
+            <Link href="/about" onClick={() => setIsMenuOpen(false)}>
+              ABOUT
+            </Link>
+          </li>
+          {!session?.user && (
+            <li
+              className={classes.link}
+              style={{ cursor: "pointer" }}
+              onClick={() => signIn()}>
+              SIGN IN
+            </li>
           )}
         </ul>
         <Link
