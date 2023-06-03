@@ -44,14 +44,14 @@ export const AdminMenu: FC = () => {
         MenuListProps={{
           "aria-labelledby": "filter-button"
         }}>
-        <MenuItem>
-          <ListItemIcon>
-            <ListIcon />
-          </ListItemIcon>
-          <Link href="/admin" onClick={handleClose}>
+        <Link href="/admin" onClick={handleClose}>
+          <MenuItem>
+            <ListItemIcon>
+              <ListIcon />
+            </ListItemIcon>
             Manage products
-          </Link>
-        </MenuItem>
+          </MenuItem>
+        </Link>
         <Divider />
         <MenuItem onClick={() => signOut()}>
           <ListItemIcon>
