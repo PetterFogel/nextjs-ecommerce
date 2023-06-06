@@ -1,8 +1,10 @@
-import { configureStore } from "@reduxjs/toolkit";
 import { productsApi } from "./api/productsApi";
+import { configureStore } from "@reduxjs/toolkit";
+import checkoutReducer from "../app/checkout/redux/cartSlice";
 
 export const store = configureStore({
   reducer: {
+    checkoutReducer,
     [productsApi.reducerPath]: productsApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
