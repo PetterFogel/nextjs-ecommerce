@@ -1,14 +1,14 @@
 "use client";
+import { Badge } from "@mui/material";
 import { AdminMenu } from "../admin-menu/AdminMenu";
 import { BurgerMenu } from "../burger-menu/BurgerMenu";
 import { FC, useState } from "react";
-import { headerPageStyles } from "./style/headerStyles";
-import { signIn, useSession } from "next-auth/react";
-import ShoppingIcon from "../../../assets/shopping-bag.svg";
-import Image from "next/legacy/image";
-import Link from "next/link";
 import { useAppSelector } from "@/redux/hooks";
+import { headerPageStyles } from "./style/headerStyles";
 import { checkoutSelector } from "@/app/checkout/redux/cartSlice";
+import { signIn, useSession } from "next-auth/react";
+import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
+import Link from "next/link";
 
 export const Header: FC = () => {
   const { classes } = headerPageStyles();
@@ -53,10 +53,9 @@ export const Header: FC = () => {
           href="/checkout"
           className={classes.cartLink}
           onClick={() => setIsMenuOpen(false)}>
-          <div className={classes.cartIcon}>
-            <Image src={ShoppingIcon} alt="Cart icon" />
-          </div>
-          <div>{totalQuantity}</div>
+          <Badge color="primary" badgeContent={totalQuantity}>
+            <WorkOutlineIcon fontSize="small" />
+          </Badge>
         </Link>
         <AdminMenu />
         <BurgerMenu
