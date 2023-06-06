@@ -1,17 +1,19 @@
 "use client";
+import { AdminMenu } from "../admin-menu/AdminMenu";
 import { BurgerMenu } from "../burger-menu/BurgerMenu";
 import { FC, useState } from "react";
 import { headerPageStyles } from "./style/headerStyles";
+import { signIn, useSession } from "next-auth/react";
 import ShoppingIcon from "../../../assets/shopping-bag.svg";
 import Image from "next/legacy/image";
-
 import Link from "next/link";
-import { signIn, useSession } from "next-auth/react";
-import { AdminMenu } from "../admin-menu/AdminMenu";
+import { useAppSelector } from "@/redux/hooks";
+import { checkoutSelector } from "@/app/checkout/redux/cartSlice";
 
 export const Header: FC = () => {
   const { classes } = headerPageStyles();
   const { data: session } = useSession();
+  const { totalQuantity } = useAppSelector(checkoutSelector);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -54,6 +56,7 @@ export const Header: FC = () => {
           <div className={classes.cartIcon}>
             <Image src={ShoppingIcon} alt="Cart icon" />
           </div>
+          <div>{totalQuantity}</div>
         </Link>
         <AdminMenu />
         <BurgerMenu

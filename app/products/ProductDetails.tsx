@@ -2,6 +2,8 @@
 import { IProduct } from "@/types/product";
 import { shoeSizes } from "@/common/constants/shoeSizes";
 import { FC, useState } from "react";
+import { checkoutSlice } from "../checkout/redux/cartSlice";
+import { useAppDispatch } from "@/redux/hooks";
 import { productPageStyles } from "./style/productPageStyles";
 import { Button, Divider, Rating, Stack, Typography } from "@mui/material";
 import Image from "next/legacy/image";
@@ -11,10 +13,16 @@ interface Props {
 }
 
 export const ProductDetails: FC<Props> = ({ product }) => {
+  const dispatch = useAppDispatch();
   const { classes } = productPageStyles();
+  const { setAddToCart } = checkoutSlice.actions;
   const [sizeValue, setSizeValue] = useState(shoeSizes[0]);
 
   const sizeSelectHandler = (size: number) => setSizeValue(size.toString());
+
+  const addToCartHandler = () => {
+    dispatch(setAddToCart({ ...product, quantity: 1 }));
+  };
 
   return (
     <div className={classes.detailsRoot}>
@@ -63,10 +71,7 @@ export const ProductDetails: FC<Props> = ({ product }) => {
           variant="contained"
           color="success"
           size="large"
-          // onClick={() =>
-          //   addToCartHandler({ ...product, size: parseInt(sizeValue) })
-          // }
-        >
+          onClick={addToCartHandler}>
           Add to cart
         </Button>
         <Divider sx={{ margin: 0 }} />
