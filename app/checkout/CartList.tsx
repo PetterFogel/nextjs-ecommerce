@@ -12,7 +12,7 @@ export const CartList: FC = () => {
     <>
       <Divider />
       {cartItems.map((item) => (
-        <CartItem key={item.cartItemId} cartProduct={item} />
+        <CartItem key={item.cartItemId} cartItem={item} />
       ))}
     </>
   );

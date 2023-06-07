@@ -14,7 +14,7 @@ export const checkoutSlice = createSlice({
   name: "checkout",
   initialState,
   reducers: {
-    setAddToCart: (state, { payload: newItem }: PayloadAction<ICartItem>) => {
+    addItemToCart: (state, { payload: newItem }: PayloadAction<ICartItem>) => {
       const uniqueId = uuid();
       state.cartItems.push({ ...newItem, cartItemId: uniqueId });
       state.totalAmount = state.cartItems.reduce(
@@ -22,11 +22,25 @@ export const checkoutSlice = createSlice({
         0
       );
       state.totalQuantity++;
+    },
+    deleteItemFromCart: (
+      state,
+      { payload: itemId }: PayloadAction<string | undefined>
+    ) => {
+      state.cartItems = state.cartItems.filter((i) => i.cartItemId !== itemId);
+      state.totalAmount = state.cartItems.reduce(
+        (total, item) => total + Number(item.price) * Number(item.quantity),
+        0
+      );
+      state.totalQuantity = state.cartItems.reduce(
+        (total, item) => total + Number(item.quantity),
+        0
+      );
     }
   }
 });
 
-export const { setAddToCart } = checkoutSlice.actions;
+export const { addItemToCart } = checkoutSlice.actions;
 
 export const checkoutSelector = (state: RootState): CheckoutState =>
   state.checkoutReducer;

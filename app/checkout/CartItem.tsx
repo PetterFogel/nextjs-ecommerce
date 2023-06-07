@@ -1,6 +1,8 @@
 "use client";
 import { FC } from "react";
 import { ICartItem } from "@/types/cartItem";
+import { checkoutSlice } from "@/redux/slices/checkout/cartSlice";
+import { useAppDispatch } from "@/redux/hooks";
 import { checkoutPageStyles } from "./style/checkoutPageStyles";
 import { Divider, Typography } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -9,10 +11,12 @@ import AddIcon from "@mui/icons-material/Add";
 import Image from "next/legacy/image";
 
 interface Props {
-  cartProduct: ICartItem;
+  cartItem: ICartItem;
 }
 
-export const CartItem: FC<Props> = ({ cartProduct }) => {
+export const CartItem: FC<Props> = ({ cartItem }) => {
+  const dispatch = useAppDispatch();
+  const { deleteItemFromCart } = checkoutSlice.actions;
   const { classes } = checkoutPageStyles();
 
   return (
@@ -20,8 +24,8 @@ export const CartItem: FC<Props> = ({ cartProduct }) => {
       <div className={classes.itemContainer}>
         <div className={classes.imageHolder}>
           <Image
-            src={cartProduct.imageUrl}
-            alt={cartProduct.imageUrl}
+            src={cartItem.imageUrl}
+            alt={cartItem.imageUrl}
             layout={"responsive"}
             height={"100"}
             width={"100"}
@@ -29,24 +33,27 @@ export const CartItem: FC<Props> = ({ cartProduct }) => {
         </div>
         <div style={{ flex: 2 }}>
           <Typography variant={"subtitle1"}>
-            {cartProduct.title} - {cartProduct.selectedSize}
+            {cartItem.title} - {cartItem.selectedSize}
           </Typography>
         </div>
         <div style={{ flex: 1 }}>
           <Typography variant={"subtitle1"}>
-            SEK {cartProduct.price}/pcs
+            SEK {cartItem.price}/pcs
           </Typography>
         </div>
         <div className={classes.quantityHolder}>
           <RemoveIcon fontSize="small" />
-          <Typography variant={"subtitle1"}>{cartProduct.quantity}</Typography>
+          <Typography variant={"subtitle1"}>{cartItem.quantity}</Typography>
           <AddIcon fontSize="small" />
         </div>
         <div className={classes.closeIconHolder}>
           <Typography variant={"subtitle1"}>
-            SEK {cartProduct.quantity * cartProduct.price}
+            SEK {cartItem.quantity * cartItem.price}
           </Typography>
-          <CloseIcon fontSize="small" />
+          <CloseIcon
+            fontSize="small"
+            onClick={() => dispatch(deleteItemFromCart(cartItem.cartItemId))}
+          />
         </div>
       </div>
       <Divider />
