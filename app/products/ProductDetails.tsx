@@ -15,14 +15,14 @@ interface Props {
 export const ProductDetails: FC<Props> = ({ product }) => {
   const dispatch = useAppDispatch();
   const { classes } = productPageStyles();
-  const { setAddToCart } = checkoutSlice.actions;
+  const { addItemToCart } = checkoutSlice.actions;
   const [sizeValue, setSizeValue] = useState(shoeSizes[0]);
 
   const sizeSelectHandler = (size: number) => setSizeValue(size.toString());
 
   const addToCartHandler = () => {
     dispatch(
-      setAddToCart({ ...product, quantity: 1, selectedSize: sizeValue })
+      addItemToCart({ ...product, quantity: 1, selectedSize: sizeValue })
     );
   };
 
