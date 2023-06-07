@@ -1,9 +1,10 @@
 import { NextPage } from "next";
+import { CartList } from "./CartList";
 
 const CheckoutPage: NextPage = () => {
   return (
     <main>
-      <h2>Checkout</h2>
+      <CartList />
     </main>
   );
 };
