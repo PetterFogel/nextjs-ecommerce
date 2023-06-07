@@ -29,7 +29,7 @@ export const CartItem: FC<Props> = ({ cartProduct }) => {
         </div>
         <div style={{ flex: 2 }}>
           <Typography variant={"subtitle1"}>
-            {cartProduct.title} - Size
+            {cartProduct.title} - {cartProduct.selectedSize}
           </Typography>
         </div>
         <div style={{ flex: 1 }}>

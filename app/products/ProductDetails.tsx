@@ -21,7 +21,9 @@ export const ProductDetails: FC<Props> = ({ product }) => {
   const sizeSelectHandler = (size: number) => setSizeValue(size.toString());
 
   const addToCartHandler = () => {
-    dispatch(setAddToCart({ ...product, quantity: 1 }));
+    dispatch(
+      setAddToCart({ ...product, quantity: 1, selectedSize: sizeValue })
+    );
   };
 
   return (
@@ -67,7 +69,7 @@ export const ProductDetails: FC<Props> = ({ product }) => {
         </div>
         <Divider sx={{ margin: 0 }} />
         <Button
-          disabled={product.sizes.length === 0}
+          disabled={product.sizes.length === 0 || sizeValue === ""}
           variant="contained"
           color="success"
           size="large"
