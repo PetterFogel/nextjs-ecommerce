@@ -1,5 +1,6 @@
 import { RootState } from "@/redux/store";
 import { ICartItem } from "@/types/cartItem";
+import { v4 as uuid } from "uuid";
 import { CheckoutState } from "./type";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -14,15 +15,13 @@ export const checkoutSlice = createSlice({
   initialState,
   reducers: {
     setAddToCart: (state, { payload: newItem }: PayloadAction<ICartItem>) => {
-      state.cartItems.push(newItem);
+      const uniqueId = uuid();
+      state.cartItems.push({ ...newItem, cartItemId: uniqueId });
       state.totalAmount = state.cartItems.reduce(
         (total, item) => total + Number(item.price) * Number(item.quantity),
         0
       );
-      state.totalQuantity = state.cartItems.reduce(
-        (total, item) => total + Number(item.quantity),
-        0
-      );
+      state.totalQuantity++;
     }
   }
 });

@@ -7,11 +7,12 @@ import { checkoutSelector } from "@/redux/slices/checkout/cartSlice";
 
 export const CartList: FC = () => {
   const { cartItems } = useAppSelector(checkoutSelector);
+  console.log(cartItems);
   return (
     <>
       <Divider />
       {cartItems.map((item) => (
-        <CartItem key={item._id} cartProduct={item} />
+        <CartItem key={item.cartItemId} cartProduct={item} />
       ))}
     </>
   );
