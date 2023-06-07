@@ -1,6 +1,6 @@
-import { CheckoutState } from "@/app/checkout/redux/type";
 import { Reducer } from "@reduxjs/toolkit";
-import checkoutReducer from "../app/checkout/redux/cartSlice";
+import { CheckoutState } from "./slices/checkout/type";
+import checkoutReducer from "../redux/slices/checkout/cartSlice";
 
 interface RootReducer {
   checkoutState: Reducer<CheckoutState>;

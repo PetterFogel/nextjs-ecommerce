@@ -5,7 +5,7 @@ import { BurgerMenu } from "../burger-menu/BurgerMenu";
 import { FC, useState } from "react";
 import { useAppSelector } from "@/redux/hooks";
 import { headerPageStyles } from "./style/headerStyles";
-import { checkoutSelector } from "@/app/checkout/redux/cartSlice";
+import { checkoutSelector } from "@/redux/slices/checkout/cartSlice";
 import { signIn, useSession } from "next-auth/react";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import Link from "next/link";

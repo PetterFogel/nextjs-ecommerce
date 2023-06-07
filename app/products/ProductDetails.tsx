@@ -2,7 +2,7 @@
 import { IProduct } from "@/types/product";
 import { shoeSizes } from "@/common/constants/shoeSizes";
 import { FC, useState } from "react";
-import { checkoutSlice } from "../checkout/redux/cartSlice";
+import { checkoutSlice } from "@/redux/slices/checkout/cartSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { productPageStyles } from "./style/productPageStyles";
 import { Button, Divider, Rating, Stack, Typography } from "@mui/material";

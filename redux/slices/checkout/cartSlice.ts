@@ -1,7 +1,7 @@
 import { RootState } from "@/redux/store";
 import { ICartItem } from "@/types/cartItem";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CheckoutState } from "./type";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: CheckoutState = {
   cartItems: [],
