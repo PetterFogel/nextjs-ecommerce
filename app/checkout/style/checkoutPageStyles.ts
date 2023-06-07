@@ -29,5 +29,14 @@ export const checkoutPageStyles = makeStyles()((theme: Theme) => ({
     display: "flex",
     justifyContent: "space-between",
     flex: 1
+  },
+  priceInfoContainer: {
+    float: "right",
+    display: "flex",
+    justifyContent: "space-between",
+    width: "20rem",
+    [theme.breakpoints.down("md")]: {
+      width: "100%"
+    }
   }
 }));
