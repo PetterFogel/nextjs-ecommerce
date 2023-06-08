@@ -45,6 +45,28 @@ export const checkoutSlice = createSlice({
         (total, item) => total + Number(item.quantity),
         0
       );
+    },
+    decreaseQunatityFromItem: (
+      state,
+      { payload: itemId }: PayloadAction<string | undefined>
+    ) => {
+      const existingItem = state.cartItems.find((i) => i.cartItemId === itemId);
+      if (existingItem && existingItem.quantity > 1) {
+        existingItem.quantity--;
+      } else {
+        state.cartItems = state.cartItems.filter(
+          (i) => i.cartItemId !== itemId
+        );
+      }
+
+      state.totalAmount = state.cartItems.reduce(
+        (total, item) => total + Number(item.price) * Number(item.quantity),
+        0
+      );
+      state.totalQuantity = state.cartItems.reduce(
+        (total, item) => total + Number(item.quantity),
+        0
+      );
     }
   }
 });
