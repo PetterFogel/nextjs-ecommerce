@@ -10,6 +10,13 @@ const initialState: CheckoutState = {
   totalQuantity: 0
 };
 
+const totalAmountReduceHandler = (cartItems: ICartItem[]) => {
+  return cartItems.reduce(
+    (total, item) => total + Number(item.price) * Number(item.quantity),
+    0
+  );
+};
+
 export const checkoutSlice = createSlice({
   name: "checkout",
   initialState,
@@ -27,20 +34,14 @@ export const checkoutSlice = createSlice({
       }
 
       state.totalQuantity++;
-      state.totalAmount = state.cartItems.reduce(
-        (total, item) => total + Number(item.price) * Number(item.quantity),
-        0
-      );
+      state.totalAmount = totalAmountReduceHandler(state.cartItems);
     },
     deleteItemFromCart: (
       state,
       { payload: itemId }: PayloadAction<string | undefined>
     ) => {
       state.cartItems = state.cartItems.filter((i) => i.cartItemId !== itemId);
-      state.totalAmount = state.cartItems.reduce(
-        (total, item) => total + Number(item.price) * Number(item.quantity),
-        0
-      );
+      state.totalAmount = totalAmountReduceHandler(state.cartItems);
       state.totalQuantity = state.cartItems.reduce(
         (total, item) => total + Number(item.quantity),
         0
@@ -59,10 +60,7 @@ export const checkoutSlice = createSlice({
         );
       }
 
-      state.totalAmount = state.cartItems.reduce(
-        (total, item) => total + Number(item.price) * Number(item.quantity),
-        0
-      );
+      state.totalAmount = totalAmountReduceHandler(state.cartItems);
       state.totalQuantity = state.cartItems.reduce(
         (total, item) => total + Number(item.quantity),
         0
