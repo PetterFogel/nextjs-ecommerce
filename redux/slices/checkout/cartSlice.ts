@@ -16,12 +16,21 @@ export const checkoutSlice = createSlice({
   reducers: {
     addItemToCart: (state, { payload: newItem }: PayloadAction<ICartItem>) => {
       const uniqueId = uuid();
-      state.cartItems.push({ ...newItem, cartItemId: uniqueId });
+      const existingItem = state.cartItems.find(
+        (i) => i._id === newItem._id && i.selectedSize === newItem.selectedSize
+      );
+
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        state.cartItems.push({ ...newItem, cartItemId: uniqueId });
+      }
+
+      state.totalQuantity++;
       state.totalAmount = state.cartItems.reduce(
         (total, item) => total + Number(item.price) * Number(item.quantity),
         0
       );
-      state.totalQuantity++;
     },
     deleteItemFromCart: (
       state,
@@ -40,7 +49,7 @@ export const checkoutSlice = createSlice({
   }
 });
 
-export const { addItemToCart } = checkoutSlice.actions;
+export const { addItemToCart, deleteItemFromCart } = checkoutSlice.actions;
 
 export const checkoutSelector = (state: RootState): CheckoutState =>
   state.checkoutReducer;

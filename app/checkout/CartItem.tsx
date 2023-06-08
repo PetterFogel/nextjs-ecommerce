@@ -16,8 +16,8 @@ interface Props {
 
 export const CartItem: FC<Props> = ({ cartItem }) => {
   const dispatch = useAppDispatch();
-  const { deleteItemFromCart } = checkoutSlice.actions;
   const { classes } = checkoutPageStyles();
+  const { deleteItemFromCart, addItemToCart } = checkoutSlice.actions;
 
   return (
     <>
@@ -44,7 +44,10 @@ export const CartItem: FC<Props> = ({ cartItem }) => {
         <div className={classes.quantityHolder}>
           <RemoveIcon fontSize="small" />
           <Typography variant={"subtitle1"}>{cartItem.quantity}</Typography>
-          <AddIcon fontSize="small" />
+          <AddIcon
+            fontSize="small"
+            onClick={() => dispatch(addItemToCart(cartItem))}
+          />
         </div>
         <div className={classes.closeIconHolder}>
           <Typography variant={"subtitle1"}>
