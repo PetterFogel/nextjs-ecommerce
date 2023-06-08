@@ -2,23 +2,14 @@ import { RootState } from "@/redux/store";
 import { ICartItem } from "@/types/cartItem";
 import { v4 as uuid } from "uuid";
 import { CheckoutState } from "./type";
+import { totalCartAmountHandler } from "../../../common/functions/totalCartAmountHandler";
+import { totalCartQuantityHandler } from "../../../common/functions/totalCartQuantityHandler";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: CheckoutState = {
   cartItems: [],
   totalAmount: 0,
   totalQuantity: 0
-};
-
-const totalAmountReduceHandler = (cartItems: ICartItem[]) => {
-  return cartItems.reduce(
-    (total, item) => total + Number(item.price) * Number(item.quantity),
-    0
-  );
-};
-
-const totalQuantityReduceHandler = (cartItems: ICartItem[]) => {
-  return cartItems.reduce((total, item) => total + Number(item.quantity), 0);
 };
 
 export const checkoutSlice = createSlice({
@@ -38,15 +29,15 @@ export const checkoutSlice = createSlice({
       }
 
       state.totalQuantity++;
-      state.totalAmount = totalAmountReduceHandler(state.cartItems);
+      state.totalAmount = totalCartAmountHandler(state.cartItems);
     },
     deleteItemFromCart: (
       state,
       { payload: itemId }: PayloadAction<string | undefined>
     ) => {
       state.cartItems = state.cartItems.filter((i) => i.cartItemId !== itemId);
-      state.totalAmount = totalAmountReduceHandler(state.cartItems);
-      state.totalQuantity = totalQuantityReduceHandler(state.cartItems);
+      state.totalAmount = totalCartAmountHandler(state.cartItems);
+      state.totalQuantity = totalCartQuantityHandler(state.cartItems);
     },
     decreaseQunatityFromItem: (
       state,
@@ -61,8 +52,8 @@ export const checkoutSlice = createSlice({
         );
       }
 
-      state.totalAmount = totalAmountReduceHandler(state.cartItems);
-      state.totalQuantity = totalQuantityReduceHandler(state.cartItems);
+      state.totalAmount = totalCartAmountHandler(state.cartItems);
+      state.totalQuantity = totalCartQuantityHandler(state.cartItems);
     }
   }
 });
