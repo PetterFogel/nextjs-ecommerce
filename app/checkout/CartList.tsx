@@ -7,7 +7,6 @@ import { checkoutSelector } from "@/redux/slices/checkout/cartSlice";
 
 export const CartList: FC = () => {
   const { cartItems } = useAppSelector(checkoutSelector);
-  console.log(cartItems);
   return (
     <>
       <Divider />

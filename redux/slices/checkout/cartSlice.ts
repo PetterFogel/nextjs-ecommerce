@@ -12,6 +12,11 @@ const initialState: CheckoutState = {
   totalQuantity: 0
 };
 
+const setCartHandler = (state: CheckoutState) => {
+  state.totalAmount = totalCartAmountHandler(state.cartItems);
+  state.totalQuantity = totalCartQuantityHandler(state.cartItems);
+};
+
 export const checkoutSlice = createSlice({
   name: "checkout",
   initialState,
@@ -22,38 +27,30 @@ export const checkoutSlice = createSlice({
         (i) => i._id === newItem._id && i.selectedSize === newItem.selectedSize
       );
 
-      if (existingItem) {
-        existingItem.quantity++;
-      } else {
-        state.cartItems.push({ ...newItem, cartItemId: uniqueId });
-      }
+      if (existingItem) existingItem.quantity++;
+      else state.cartItems.push({ ...newItem, cartItemId: uniqueId });
 
-      state.totalQuantity++;
-      state.totalAmount = totalCartAmountHandler(state.cartItems);
+      setCartHandler(state);
     },
     deleteItemFromCart: (
       state,
       { payload: itemId }: PayloadAction<string | undefined>
     ) => {
       state.cartItems = state.cartItems.filter((i) => i.cartItemId !== itemId);
-      state.totalAmount = totalCartAmountHandler(state.cartItems);
-      state.totalQuantity = totalCartQuantityHandler(state.cartItems);
+      setCartHandler(state);
     },
     decreaseQunatityFromItem: (
       state,
       { payload: itemId }: PayloadAction<string | undefined>
     ) => {
       const existingItem = state.cartItems.find((i) => i.cartItemId === itemId);
-      if (existingItem && existingItem.quantity > 1) {
-        existingItem.quantity--;
-      } else {
+      if (existingItem && existingItem.quantity > 1) existingItem.quantity--;
+      else
         state.cartItems = state.cartItems.filter(
           (i) => i.cartItemId !== itemId
         );
-      }
 
-      state.totalAmount = totalCartAmountHandler(state.cartItems);
-      state.totalQuantity = totalCartQuantityHandler(state.cartItems);
+      setCartHandler(state);
     }
   }
 });
