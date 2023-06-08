@@ -17,6 +17,10 @@ const totalAmountReduceHandler = (cartItems: ICartItem[]) => {
   );
 };
 
+const totalQuantityReduceHandler = (cartItems: ICartItem[]) => {
+  return cartItems.reduce((total, item) => total + Number(item.quantity), 0);
+};
+
 export const checkoutSlice = createSlice({
   name: "checkout",
   initialState,
@@ -42,10 +46,7 @@ export const checkoutSlice = createSlice({
     ) => {
       state.cartItems = state.cartItems.filter((i) => i.cartItemId !== itemId);
       state.totalAmount = totalAmountReduceHandler(state.cartItems);
-      state.totalQuantity = state.cartItems.reduce(
-        (total, item) => total + Number(item.quantity),
-        0
-      );
+      state.totalQuantity = totalQuantityReduceHandler(state.cartItems);
     },
     decreaseQunatityFromItem: (
       state,
@@ -61,10 +62,7 @@ export const checkoutSlice = createSlice({
       }
 
       state.totalAmount = totalAmountReduceHandler(state.cartItems);
-      state.totalQuantity = state.cartItems.reduce(
-        (total, item) => total + Number(item.quantity),
-        0
-      );
+      state.totalQuantity = totalQuantityReduceHandler(state.cartItems);
     }
   }
 });
