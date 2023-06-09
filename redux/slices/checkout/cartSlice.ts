@@ -6,9 +6,17 @@ import { totalCartAmountHandler } from "../../../common/functions/totalCartAmoun
 import { totalCartQuantityHandler } from "../../../common/functions/totalCartQuantityHandler";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-const totalAmount = JSON.parse(localStorage.getItem("totalAmount") || "0");
-const totalQuantity = JSON.parse(localStorage.getItem("totalQuantity") || "0");
+const ifWindow = typeof window !== "undefined";
+
+const cartItems = ifWindow
+  ? JSON.parse(localStorage.getItem("cartItems") || "[]")
+  : [];
+const totalAmount = ifWindow
+  ? JSON.parse(localStorage.getItem("totalAmount") || "0")
+  : 0;
+const totalQuantity = ifWindow
+  ? JSON.parse(localStorage.getItem("totalQuantity") || "0")
+  : 0;
 
 const initialState: CheckoutState = {
   cartItems: cartItems,
