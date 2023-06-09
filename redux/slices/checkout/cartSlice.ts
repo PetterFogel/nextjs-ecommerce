@@ -6,15 +6,22 @@ import { totalCartAmountHandler } from "../../../common/functions/totalCartAmoun
 import { totalCartQuantityHandler } from "../../../common/functions/totalCartQuantityHandler";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+const totalAmount = JSON.parse(localStorage.getItem("totalAmount") || "0");
+const totalQuantity = JSON.parse(localStorage.getItem("totalQuantity") || "0");
+
 const initialState: CheckoutState = {
-  cartItems: [],
-  totalAmount: 0,
-  totalQuantity: 0
+  cartItems: cartItems,
+  totalAmount: totalAmount,
+  totalQuantity: totalQuantity
 };
 
 const setCartHandler = (state: CheckoutState) => {
   state.totalAmount = totalCartAmountHandler(state.cartItems);
   state.totalQuantity = totalCartQuantityHandler(state.cartItems);
+  localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+  localStorage.setItem("totalAmount", JSON.stringify(state.totalAmount));
+  localStorage.setItem("totalQuantity", JSON.stringify(state.totalQuantity));
 };
 
 export const checkoutSlice = createSlice({
