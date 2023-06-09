@@ -3,12 +3,14 @@ import { makeStyles } from "tss-react/mui";
 
 export const checkoutPageStyles = makeStyles()((theme: Theme) => ({
   root: {
-    maxWidth: "950px",
-    margin: "auto",
     padding: theme.spacing(2),
     [theme.breakpoints.down("md")]: {
-      padding: theme.spacing(1.5)
+      padding: theme.spacing(1)
     }
+  },
+  emptyPanelContainer: {
+    maxWidth: "950px",
+    margin: "auto"
   },
   itemContainer: {
     display: "flex",
