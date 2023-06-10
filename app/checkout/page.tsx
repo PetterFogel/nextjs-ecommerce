@@ -2,6 +2,7 @@
 import { NextPage } from "next";
 import { CartList } from "./CartList";
 import { useRouter } from "next/navigation";
+import { OrderDetails } from "./OrderDetails";
 import { useAppSelector } from "@/redux/hooks";
 import { checkoutSelector } from "@/redux/slices/checkout/cartSlice";
 import { Button, Grid, Typography } from "@mui/material";
@@ -36,6 +37,9 @@ const CheckoutPage: NextPage = () => {
               </Typography>
               <Typography variant={"h3"}>SEK: {totalAmount}</Typography>
             </div>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <OrderDetails />
           </Grid>
         </Grid>
       )}
