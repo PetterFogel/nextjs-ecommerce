@@ -17,7 +17,7 @@ const CheckoutPage: FC = () => {
       {cartItems.length === 0 ? (
         <EmptyCartPanel />
       ) : (
-        <Grid container spacing={1}>
+        <Grid container spacing={5}>
           <Grid item xs={12} md={6}>
             <CartList />
             <div className={classes.priceInfoContainer}>

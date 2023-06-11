@@ -3,9 +3,11 @@ import { makeStyles } from "tss-react/mui";
 
 export const checkoutPageStyles = makeStyles()((theme: Theme) => ({
   root: {
-    padding: theme.spacing(2),
+    margin: theme.spacing(5, 0),
+    padding: theme.spacing(0, 4),
     [theme.breakpoints.down("md")]: {
-      padding: theme.spacing(1)
+      padding: theme.spacing(0, 1.5),
+      margin: theme.spacing(2, 0)
     }
   },
   emptyPanelContainer: {
