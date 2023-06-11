@@ -12,6 +12,7 @@ interface Props {
   adornmentSymbol?: string;
   multiline?: boolean;
   disabled?: boolean;
+  margin?: string;
 }
 
 export const FormikTextField: FC<Props> = ({
@@ -23,7 +24,8 @@ export const FormikTextField: FC<Props> = ({
   formik,
   adornmentSymbol,
   multiline,
-  disabled
+  disabled,
+  margin
 }) => {
   return (
     <TextField
@@ -35,7 +37,7 @@ export const FormikTextField: FC<Props> = ({
       type={type}
       label={label}
       size="small"
-      margin="dense"
+      margin={margin ? margin : "none"}
       helperText={helperText}
       error={error}
       InputProps={{
