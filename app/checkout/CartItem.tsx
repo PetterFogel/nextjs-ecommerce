@@ -27,6 +27,7 @@ export const CartItem: FC<Props> = ({ cartItem }) => {
           <Image
             src={cartItem.imageUrl}
             alt={cartItem.imageUrl}
+            priority={true}
             layout={"responsive"}
             height={"100"}
             width={"100"}

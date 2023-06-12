@@ -1,5 +1,6 @@
+"use client";
 import { FC } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { Button, Typography } from "@mui/material";
 
 export const EmptyCartPanel: FC = () => {
