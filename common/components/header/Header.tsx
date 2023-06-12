@@ -2,7 +2,7 @@
 import { Badge } from "@mui/material";
 import { AdminMenu } from "../admin-menu/AdminMenu";
 import { BurgerMenu } from "../burger-menu/BurgerMenu";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useAppSelector } from "@/redux/hooks";
 import { headerPageStyles } from "./style/headerStyles";
 import { checkoutSelector } from "@/redux/slices/checkout/cartSlice";
@@ -15,6 +15,11 @@ export const Header: FC = () => {
   const { data: session } = useSession();
   const { totalQuantity } = useAppSelector(checkoutSelector);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [cartQty, setCartQty] = useState(0);
+
+  useEffect(() => {
+    setCartQty(totalQuantity);
+  }, [totalQuantity]);
 
   return (
     <header className={classes.header}>
@@ -53,7 +58,7 @@ export const Header: FC = () => {
           href="/checkout"
           className={classes.cartLink}
           onClick={() => setIsMenuOpen(false)}>
-          <Badge color="primary" badgeContent={totalQuantity}>
+          <Badge color="primary" badgeContent={cartQty}>
             <WorkOutlineIcon fontSize="small" />
           </Badge>
         </Link>

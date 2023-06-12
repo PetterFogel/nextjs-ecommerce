@@ -1,15 +1,17 @@
 "use client";
 import { FC } from "react";
 import { CartItem } from "./CartItem";
-import { useAppSelector } from "@/redux/hooks";
-import { checkoutSelector } from "@/redux/slices/checkout/cartSlice";
+import { ICartItem } from "@/types/cartItem";
 
-export const CartList: FC = () => {
-  const { cartItems } = useAppSelector(checkoutSelector);
+interface Props {
+  cartItems: ICartItem[];
+}
+
+export const CartList: FC<Props> = ({ cartItems }) => {
   return (
     <>
-      {cartItems.map((item) => (
-        <CartItem key={item.cartItemId} cartItem={item} />
+      {cartItems.map((item, index) => (
+        <CartItem key={index} cartItem={item} />
       ))}
     </>
   );
