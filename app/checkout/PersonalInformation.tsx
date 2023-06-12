@@ -1,39 +1,14 @@
+"use client";
 import { FC } from "react";
 import { useFormik } from "formik";
 import { FormikTextField } from "@/common/components/formik-text-field/FormikTextField";
 import { IPersonalInformation } from "@/types/personalInformation";
 import { Button, Grid, Typography } from "@mui/material";
+import { personalInfoValidator } from "./style/personalInfoValidator";
 
 export const PersonalInformation: FC = () => {
-  const validate = (values: IPersonalInformation) => {
-    const errors: Record<string, string> = {};
-    if (!values.email) {
-      errors.email = "Please enter email";
-    }
-    if (!values.phone) {
-      errors.phone = "Please enter phone";
-    }
-    if (!values.postalCode) {
-      errors.postalCode = "Please enter postalCode";
-    }
-    if (!values.firstName) {
-      errors.firstName = "Please enter firstName";
-    }
-    if (!values.lastName) {
-      errors.lastName = "Please enter lastName";
-    }
-    if (!values.address) {
-      errors.address = "Please enter address";
-    }
-    if (!values.city) {
-      errors.city = "Please enter city";
-    }
-    if (!values.phone) {
-      errors.phone = "Please enter phone";
-    }
-
-    return errors;
-  };
+  const validate = (values: IPersonalInformation) =>
+    personalInfoValidator(values);
 
   const formik = useFormik({
     initialValues: {
