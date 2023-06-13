@@ -16,9 +16,7 @@ export const ProductDetails: FC<Props> = ({ product }) => {
   const dispatch = useAppDispatch();
   const { classes } = productPageStyles();
   const { addItemToCart } = checkoutSlice.actions;
-  const [sizeValue, setSizeValue] = useState(shoeSizes[0]);
-
-  console.log(product.sizes);
+  const [sizeValue, setSizeValue] = useState(product.sizes[0]);
 
   const sizeSelectHandler = (size: number) => setSizeValue(size.toString());
 
@@ -60,6 +58,7 @@ export const ProductDetails: FC<Props> = ({ product }) => {
             {shoeSizes.map((size, index) => (
               <Button
                 key={index}
+                disabled={!product.sizes.includes(size)}
                 className={
                   size === sizeValue ? classes.activeSize : classes.size
                 }
