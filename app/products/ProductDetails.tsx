@@ -18,6 +18,8 @@ export const ProductDetails: FC<Props> = ({ product }) => {
   const { addItemToCart } = checkoutSlice.actions;
   const [sizeValue, setSizeValue] = useState(shoeSizes[0]);
 
+  console.log(product.sizes);
+
   const sizeSelectHandler = (size: number) => setSizeValue(size.toString());
 
   const addToCartHandler = () => {
@@ -56,14 +58,14 @@ export const ProductDetails: FC<Props> = ({ product }) => {
           </Typography>
           <div className={classes.sizes}>
             {shoeSizes.map((size, index) => (
-              <div
+              <Button
                 key={index}
                 className={
                   size === sizeValue ? classes.activeSize : classes.size
                 }
                 onClick={() => sizeSelectHandler(parseInt(size))}>
-                <p>{size}</p>
-              </div>
+                {size}
+              </Button>
             ))}
           </div>
         </div>

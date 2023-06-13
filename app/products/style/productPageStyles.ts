@@ -61,7 +61,6 @@ export const productPageStyles = makeStyles()((theme: Theme) => ({
     cursor: "pointer",
     justifyContent: "center",
     border: "1px solid #ddd",
-    padding: theme.spacing(0.7, 1.8),
     "&:hover": {
       background: "#ddd"
     }
@@ -73,6 +72,9 @@ export const productPageStyles = makeStyles()((theme: Theme) => ({
     justifyContent: "center",
     background: "#333",
     color: "#fff",
-    padding: theme.spacing(0.7, 1.8)
+    "&:hover": {
+      color: "#333",
+      background: "#ddd"
+    }
   }
 }));
