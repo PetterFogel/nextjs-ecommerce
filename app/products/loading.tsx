@@ -1,7 +1,7 @@
-import { Loader } from "@/common/components/loader/Loader";
+import { SkeletonProductList } from "@/common/components/skeleton-list/SkeletonProductList";
 
 const Loading = () => {
-  return <Loader />;
+  return <SkeletonProductList />;
 };
 
 export default Loading;
