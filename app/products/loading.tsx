@@ -1,4 +1,4 @@
-import { SkeletonProductList } from "@/common/components/skeleton-list/SkeletonProductList";
+import { SkeletonProductList } from "@/common/components/skeleton-product-list/SkeletonProductList";
 
 const Loading = () => {
   return <SkeletonProductList />;
