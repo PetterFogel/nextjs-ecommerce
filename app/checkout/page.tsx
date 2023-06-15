@@ -5,11 +5,13 @@ import { OrderDetails } from "./OrderDetails";
 import { useAppSelector } from "@/redux/hooks";
 import { EmptyCartPanel } from "./EmptyCartPanel";
 import { checkoutSelector } from "@/redux/slices/checkout/cartSlice";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { checkoutPageStyles } from "./style/checkoutPageStyles";
 import { ICartItem } from "@/types/cartItem";
 
 const CheckoutPage: FC = () => {
+  const theme = useTheme();
+  const isBreakpointLg = useMediaQuery(theme.breakpoints.down("lg"));
   const { classes } = checkoutPageStyles();
   const { cartItems, totalAmount } = useAppSelector(checkoutSelector);
   const [cartAmount, setCartAmount] = useState(0);
@@ -25,7 +27,7 @@ const CheckoutPage: FC = () => {
       {cartList.length === 0 ? (
         <EmptyCartPanel />
       ) : (
-        <Grid container spacing={10}>
+        <Grid container spacing={isBreakpointLg ? 2 : 10}>
           <Grid item lg={6} md={12} xs={12}>
             <CartList cartItems={cartList} />
             <div className={classes.priceInfoContainer}>
