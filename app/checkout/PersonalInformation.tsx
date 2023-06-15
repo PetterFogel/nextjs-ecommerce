@@ -3,8 +3,8 @@ import { FC } from "react";
 import { useFormik } from "formik";
 import { FormikTextField } from "@/common/components/formik-text-field/FormikTextField";
 import { IPersonalInformation } from "@/types/personalInformation";
+import { personalInfoValidator } from "./helpers/personalInfoValidator";
 import { Button, Grid, Typography } from "@mui/material";
-import { personalInfoValidator } from "./style/personalInfoValidator";
 
 export const PersonalInformation: FC = () => {
   const validate = (values: IPersonalInformation) =>
