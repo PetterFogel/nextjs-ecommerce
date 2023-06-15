@@ -34,14 +34,12 @@ export const CartItem: FC<Props> = ({ cartItem }) => {
           />
         </div>
         <div style={{ flex: 2 }}>
-          <Typography variant={"subtitle1"}>
+          <Typography variant={"h4"}>
             {cartItem.title} - {cartItem.selectedSize}
           </Typography>
         </div>
         <div style={{ flex: 1 }}>
-          <Typography variant={"subtitle1"}>
-            SEK {cartItem.price}/pcs
-          </Typography>
+          <Typography variant={"h4"}>SEK {cartItem.price}/pcs</Typography>
         </div>
         <div className={classes.quantityHolder}>
           <RemoveIcon
@@ -50,14 +48,14 @@ export const CartItem: FC<Props> = ({ cartItem }) => {
               dispatch(decreaseQunatityFromItem(cartItem.cartItemId))
             }
           />
-          <Typography variant={"subtitle1"}>{cartItem.quantity}</Typography>
+          <Typography variant={"h4"}>{cartItem.quantity}</Typography>
           <AddIcon
             fontSize="small"
             onClick={() => dispatch(addItemToCart(cartItem))}
           />
         </div>
         <div className={classes.closeIconHolder}>
-          <Typography variant={"subtitle1"}>
+          <Typography variant={"h4"}>
             SEK {cartItem.quantity * cartItem.price}
           </Typography>
           <CloseIcon

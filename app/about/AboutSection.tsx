@@ -24,7 +24,7 @@ export const AboutSection: FC<Props> = ({ content }) => {
           <Typography variant={"h3"} mb={2}>
             {content.title}
           </Typography>
-          <Typography variant={"subtitle1"}>{content.paragraph}</Typography>
+          <Typography variant={"subtitle2"}>{content.paragraph}</Typography>
         </div>
       </div>
     </div>

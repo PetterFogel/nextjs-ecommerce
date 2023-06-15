@@ -25,7 +25,7 @@ export const ProductItem: FC<Props> = ({ product }) => {
       <Typography variant="h4" mt={0.5} sx={{ cursor: "pointer" }}>
         {product.title}
       </Typography>
-      <Typography variant="h4">{product.price + " SEK"}</Typography>
+      <Typography variant="h5">{product.price + " SEK"}</Typography>
     </Link>
   );
 };

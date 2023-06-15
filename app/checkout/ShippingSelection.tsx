@@ -13,9 +13,7 @@ export const ShippingSelection: FC = () => {
   return (
     <>
       <FormControl sx={{ width: "100%" }}>
-        <Typography variant="h4" fontWeight={600}>
-          Select shipping
-        </Typography>
+        <Typography variant="subtitle1">Select shipping</Typography>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
           defaultValue="female"
@@ -31,9 +29,7 @@ export const ShippingSelection: FC = () => {
               control={<Radio />}
               label="Postnord"
             />
-            <Typography variant="h4" fontWeight={600}>
-              59 SEK
-            </Typography>
+            <Typography variant="subtitle1">59 SEK</Typography>
           </Box>
           <Box
             sx={{
@@ -46,9 +42,7 @@ export const ShippingSelection: FC = () => {
               control={<Radio />}
               label="DHL Service point"
             />
-            <Typography variant="h4" fontWeight={600}>
-              39 SEK
-            </Typography>
+            <Typography variant="subtitle1">39 SEK</Typography>
           </Box>
           <Box
             sx={{
@@ -61,9 +55,7 @@ export const ShippingSelection: FC = () => {
               control={<Radio />}
               label="Budbee Box"
             />
-            <Typography variant="h4" fontWeight={600}>
-              0 SEK
-            </Typography>
+            <Typography variant="subtitle1">0 SEK</Typography>
           </Box>
         </RadioGroup>
       </FormControl>

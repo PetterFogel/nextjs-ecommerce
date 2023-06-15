@@ -79,7 +79,7 @@ export const ProductDetails: FC<Props> = ({ product }) => {
         </Button>
         <Divider sx={{ margin: 0 }} />
         <div>
-          <Typography variant={"subtitle1"} mb={0.5}>
+          <Typography variant={"subtitle2"} mb={0.5}>
             Product info
           </Typography>
           <Typography variant={"subtitle2"}>{product.info}</Typography>
