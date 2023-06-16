@@ -23,6 +23,14 @@ export const checkoutPageStyles = makeStyles()((theme: Theme) => ({
     flex: 1,
     marginRight: theme.spacing(1)
   },
+  itemInfoHolder: {
+    flex: 3,
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    gap: "2rem"
+  },
   quantityHolder: {
     display: "flex",
     justifyContent: "space-between",

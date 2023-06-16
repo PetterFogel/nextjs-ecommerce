@@ -33,15 +33,7 @@ export const CartItem: FC<Props> = ({ cartItem }) => {
             width={"100"}
           />
         </div>
-        <div
-          style={{
-            flex: 3,
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            gap: "2rem"
-          }}>
+        <div className={classes.itemInfoHolder}>
           <div>
             <Typography variant={"h4"}>
               {cartItem.title} - {cartItem.selectedSize}
