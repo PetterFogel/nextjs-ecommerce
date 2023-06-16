@@ -5,7 +5,10 @@ export const productPageStyles = makeStyles()((theme: Theme) => ({
   root: {
     maxWidth: "1400px",
     margin: "auto",
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
+    [theme.breakpoints.down("sm")]: {
+      padding: theme.spacing(1)
+    }
   },
   listContainer: {
     display: "grid",

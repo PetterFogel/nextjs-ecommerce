@@ -20,18 +20,19 @@ export const checkoutPageStyles = makeStyles()((theme: Theme) => ({
     justifyContent: "space-between"
   },
   imageHolder: {
-    flex: 0.7,
+    flex: 1,
     marginRight: theme.spacing(1)
   },
   quantityHolder: {
     display: "flex",
+    justifyContent: "space-between",
     alignItems: "center",
     gap: "1rem",
-    flex: 1
+    flex: 0.75
   },
   closeIconHolder: {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     flex: 1
   },
   priceInfoContainer: {

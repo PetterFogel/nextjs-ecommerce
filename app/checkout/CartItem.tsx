@@ -33,13 +33,23 @@ export const CartItem: FC<Props> = ({ cartItem }) => {
             width={"100"}
           />
         </div>
-        <div style={{ flex: 2 }}>
-          <Typography variant={"h4"}>
-            {cartItem.title} - {cartItem.selectedSize}
-          </Typography>
-        </div>
-        <div style={{ flex: 1 }}>
-          <Typography variant={"h4"}>SEK {cartItem.price}/pcs</Typography>
+        <div
+          style={{
+            flex: 3,
+            height: "100%",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            gap: "2rem"
+          }}>
+          <div>
+            <Typography variant={"h4"}>
+              {cartItem.title} - {cartItem.selectedSize}
+            </Typography>
+          </div>
+          <div>
+            <Typography variant={"h4"}>{cartItem.price} SEK</Typography>
+          </div>
         </div>
         <div className={classes.quantityHolder}>
           <RemoveIcon
@@ -55,9 +65,6 @@ export const CartItem: FC<Props> = ({ cartItem }) => {
           />
         </div>
         <div className={classes.closeIconHolder}>
-          <Typography variant={"h4"}>
-            SEK {cartItem.quantity * cartItem.price}
-          </Typography>
           <CloseIcon
             fontSize="small"
             onClick={() => dispatch(deleteItemFromCart(cartItem.cartItemId))}

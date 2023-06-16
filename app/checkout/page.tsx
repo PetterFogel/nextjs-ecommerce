@@ -11,7 +11,7 @@ import { ICartItem } from "@/types/cartItem";
 
 const CheckoutPage: FC = () => {
   const theme = useTheme();
-  const isBreakpointLg = useMediaQuery(theme.breakpoints.down("lg"));
+  const isBreakpointMd = useMediaQuery(theme.breakpoints.down("md"));
   const { classes } = checkoutPageStyles();
   const { cartItems, totalAmount } = useAppSelector(checkoutSelector);
   const [cartAmount, setCartAmount] = useState(0);
@@ -27,8 +27,8 @@ const CheckoutPage: FC = () => {
       {cartList.length === 0 ? (
         <EmptyCartPanel />
       ) : (
-        <Grid container spacing={isBreakpointLg ? 2 : 10}>
-          <Grid item lg={6} md={12} xs={12}>
+        <Grid container spacing={isBreakpointMd ? 2 : 5}>
+          <Grid item md={6} xs={12}>
             <CartList cartItems={cartList} />
             <div className={classes.priceInfoContainer}>
               <Typography variant={"h3"} fontWeight={700}>
@@ -37,7 +37,7 @@ const CheckoutPage: FC = () => {
               <Typography variant={"h3"}>SEK: {cartAmount}</Typography>
             </div>
           </Grid>
-          <Grid item lg={5} md={12} xs={12}>
+          <Grid item md={5} xs={12}>
             <OrderDetails />
           </Grid>
         </Grid>
