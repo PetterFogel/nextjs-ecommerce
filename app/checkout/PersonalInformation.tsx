@@ -1,32 +1,14 @@
 "use client";
 import { FC } from "react";
-import { useFormik } from "formik";
+import { FormikValues } from "formik";
 import { FormikTextField } from "@/common/components/formik-text-field/FormikTextField";
-import { IPersonalInformation } from "@/types/personalInformation";
-import { personalInfoValidator } from "./helpers/personalInfoValidator";
 import { Button, Grid, Typography } from "@mui/material";
 
-export const PersonalInformation: FC = () => {
-  const validate = (values: IPersonalInformation) =>
-    personalInfoValidator(values);
+interface Props {
+  formik: FormikValues;
+}
 
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      postalCode: "",
-      firstName: "",
-      lastName: "",
-      address: "",
-      city: "",
-      phone: ""
-    },
-    validate,
-    enableReinitialize: false,
-    validateOnMount: true,
-    onSubmit: async (values) => {
-      console.log(values);
-    }
-  });
+export const PersonalInformation: FC<Props> = ({ formik }) => {
   return (
     <form onSubmit={formik.handleSubmit}>
       <Grid container spacing={1}>
