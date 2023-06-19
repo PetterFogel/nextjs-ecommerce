@@ -4,24 +4,32 @@ import {
   Box,
   FormControl,
   FormControlLabel,
+  FormHelperText,
   Radio,
   RadioGroup,
   Typography
 } from "@mui/material";
+import { FormikValues } from "formik";
 import { checkoutPageStyles } from "./style/checkoutPageStyles";
 
-export const ShippingSelection: FC = () => {
+interface Props {
+  formik: FormikValues;
+}
+
+export const ShippingSelection: FC<Props> = ({ formik }) => {
   const { classes } = checkoutPageStyles();
   return (
     <>
-      <FormControl sx={{ width: "100%" }}>
+      <FormControl sx={{ width: "100%" }} error id="shipping">
         <Typography variant="h3" fontWeight={600}>
           Select shipping
         </Typography>
         <RadioGroup
+          name="shipping"
           aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="female"
-          name="radio-buttons-group">
+          onChange={(event) => {
+            formik.setFieldValue("shipping", event.currentTarget.value);
+          }}>
           <Box className={classes.spaceBetween}>
             <FormControlLabel
               value="POSTNORD"
@@ -47,6 +55,9 @@ export const ShippingSelection: FC = () => {
             <Typography variant="subtitle1">0 SEK</Typography>
           </Box>
         </RadioGroup>
+        {formik.touched.shipping && formik.errors.shipping && (
+          <FormHelperText error>{formik.errors.shipping}</FormHelperText>
+        )}
       </FormControl>
     </>
   );

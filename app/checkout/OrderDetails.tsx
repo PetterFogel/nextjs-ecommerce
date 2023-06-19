@@ -13,6 +13,7 @@ export const OrderDetails: FC = () => {
 
   const formik = useFormik({
     initialValues: {
+      shipping: "",
       email: "",
       postalCode: "",
       firstName: "",
@@ -24,13 +25,13 @@ export const OrderDetails: FC = () => {
     validate,
     enableReinitialize: false,
     validateOnMount: true,
-    onSubmit: async (values) => {
+    onSubmit: async (values: IPersonalInformation) => {
       console.log(values);
     }
   });
   return (
     <Stack direction="column" spacing={2}>
-      <ShippingSelection />
+      <ShippingSelection formik={formik} />
       <PersonalInformation formik={formik} />
     </Stack>
   );

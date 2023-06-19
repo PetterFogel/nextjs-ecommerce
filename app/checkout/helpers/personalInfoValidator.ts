@@ -2,6 +2,9 @@ import { IPersonalInformation } from "@/types/personalInformation";
 
 export const personalInfoValidator = (values: IPersonalInformation) => {
   const errors: Record<string, string> = {};
+  if (!values.shipping) {
+    errors.shipping = "Please select shipping";
+  }
   if (!values.email) {
     errors.email = "Please enter email";
   }
