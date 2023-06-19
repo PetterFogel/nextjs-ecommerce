@@ -43,13 +43,9 @@ export const checkoutPageStyles = makeStyles()((theme: Theme) => ({
     justifyContent: "flex-end",
     flex: 1
   },
-  priceInfoContainer: {
-    float: "right",
+  spaceBetween: {
     display: "flex",
     justifyContent: "space-between",
-    width: "20rem",
-    [theme.breakpoints.down("md")]: {
-      width: "100%"
-    }
+    alignItems: "center"
   }
 }));

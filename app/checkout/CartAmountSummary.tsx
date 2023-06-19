@@ -11,7 +11,7 @@ export const CartAmountSummary: FC<Props> = ({ cartAmount }) => {
   const { classes } = checkoutPageStyles();
 
   return (
-    <div className={classes.priceInfoContainer}>
+    <div className={classes.spaceBetween}>
       <Typography variant={"h3"}>Total</Typography>
       <Typography variant={"h3"}>SEK: {cartAmount}</Typography>
     </div>

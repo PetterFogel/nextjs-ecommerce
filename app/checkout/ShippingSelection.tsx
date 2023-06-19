@@ -8,8 +8,10 @@ import {
   RadioGroup,
   Typography
 } from "@mui/material";
+import { checkoutPageStyles } from "./style/checkoutPageStyles";
 
 export const ShippingSelection: FC = () => {
+  const { classes } = checkoutPageStyles();
   return (
     <>
       <FormControl sx={{ width: "100%" }}>
@@ -20,12 +22,7 @@ export const ShippingSelection: FC = () => {
           aria-labelledby="demo-radio-buttons-group-label"
           defaultValue="female"
           name="radio-buttons-group">
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center"
-            }}>
+          <Box className={classes.spaceBetween}>
             <FormControlLabel
               value="POSTNORD"
               control={<Radio />}
@@ -33,12 +30,7 @@ export const ShippingSelection: FC = () => {
             />
             <Typography variant="subtitle1">59 SEK</Typography>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center"
-            }}>
+          <Box className={classes.spaceBetween}>
             <FormControlLabel
               value="DHL"
               control={<Radio />}
@@ -46,12 +38,7 @@ export const ShippingSelection: FC = () => {
             />
             <Typography variant="subtitle1">39 SEK</Typography>
           </Box>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center"
-            }}>
+          <Box className={classes.spaceBetween}>
             <FormControlLabel
               value="BUDBEE"
               control={<Radio />}
