@@ -13,7 +13,9 @@ export const ShippingSelection: FC = () => {
   return (
     <>
       <FormControl sx={{ width: "100%" }}>
-        <Typography variant="subtitle1">Select shipping</Typography>
+        <Typography variant="h3" fontWeight={600}>
+          Select shipping
+        </Typography>
         <RadioGroup
           aria-labelledby="demo-radio-buttons-group-label"
           defaultValue="female"

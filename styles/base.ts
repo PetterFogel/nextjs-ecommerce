@@ -121,7 +121,7 @@ export const theme = createTheme({
       styleOverrides: { root: { cursor: "pointer" } }
     },
     MuiDivider: {
-      styleOverrides: { root: { margin: "15px 0px", background: "#ddd" } }
+      styleOverrides: { root: { margin: "15px 0px", background: "#eee" } }
     },
     MuiMenuItem: {
       defaultProps: { style: { opacity: 1 } }
