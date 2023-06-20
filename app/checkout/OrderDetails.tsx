@@ -6,21 +6,13 @@ import { IOrderDetails } from "@/types/orderDetails";
 import { ShippingSelection } from "./ShippingSelection";
 import { PersonalInformation } from "./PersonalInformation";
 import { personalInfoValidator } from "./helpers/personalInfoValidator";
+import { orderDetailsState } from "@/common/constants/orderDetailtsState";
 
 export const OrderDetails: FC = () => {
   const validate = (values: IOrderDetails) => personalInfoValidator(values);
 
   const formik = useFormik({
-    initialValues: {
-      shipping: "",
-      email: "",
-      postalCode: "",
-      firstName: "",
-      lastName: "",
-      address: "",
-      city: "",
-      phone: ""
-    },
+    initialValues: orderDetailsState,
     validate,
     enableReinitialize: false,
     validateOnMount: true,
