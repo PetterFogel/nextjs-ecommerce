@@ -1,4 +1,4 @@
-export interface IPersonalInformation {
+export interface IOrderDetails {
   shipping: string;
   email: string;
   postalCode: string;
