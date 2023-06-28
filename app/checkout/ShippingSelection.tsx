@@ -33,7 +33,6 @@ export const ShippingSelection: FC<Props> = ({ formik }) => {
           name="shipping"
           aria-labelledby="demo-radio-buttons-group-label"
           onChange={(event) => {
-            console.log(event.currentTarget.value);
             dispatch(setShippingAmount(parseInt(event.currentTarget.value)));
             formik.setFieldValue("shipping", event.currentTarget.value);
           }}>
