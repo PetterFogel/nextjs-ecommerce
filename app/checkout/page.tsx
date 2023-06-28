@@ -14,14 +14,17 @@ const CheckoutPage: FC = () => {
   const theme = useTheme();
   const isBreakpointMd = useMediaQuery(theme.breakpoints.down("md"));
   const { classes } = checkoutPageStyles();
-  const { cartItems, totalAmount } = useAppSelector(checkoutSelector);
+  const { cartItems, totalAmount, shippingAmount } =
+    useAppSelector(checkoutSelector);
   const [cartAmount, setCartAmount] = useState(0);
+  const [shippingValue, setShippingValue] = useState(0);
   const [cartList, setCartList] = useState<ICartItem[]>([]);
 
   useEffect(() => {
     setCartList(cartItems);
     setCartAmount(totalAmount);
-  }, [totalAmount, cartItems]);
+    setShippingValue(shippingAmount);
+  }, [totalAmount, cartItems, shippingAmount]);
 
   return (
     <main className={classes.root}>
@@ -31,7 +34,10 @@ const CheckoutPage: FC = () => {
         <Grid container spacing={isBreakpointMd ? 2 : 5}>
           <Grid item md={6} xs={12}>
             <CartList cartItems={cartList} />
-            <CartAmountSummary cartAmount={cartAmount} />
+            <CartAmountSummary
+              cartAmount={cartAmount}
+              shippingAmount={shippingValue}
+            />
           </Grid>
           <Grid item md={5} xs={12}>
             <OrderDetails />
