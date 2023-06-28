@@ -21,6 +21,7 @@ const totalQuantity = ifWindow
 const initialState: CheckoutState = {
   cartItems: cartItems,
   totalAmount: totalAmount,
+  shippingAmount: 0,
   totalQuantity: totalQuantity
 };
 
@@ -66,11 +67,15 @@ export const checkoutSlice = createSlice({
         );
 
       setCartHandler(state);
+    },
+    setShippingAmount: (state, { payload }: PayloadAction<number>) => {
+      state.shippingAmount = payload;
     }
   }
 });
 
-export const { addItemToCart, deleteItemFromCart } = checkoutSlice.actions;
+export const { addItemToCart, deleteItemFromCart, setShippingAmount } =
+  checkoutSlice.actions;
 
 export const checkoutSelector = (state: RootState): CheckoutState =>
   state.checkoutReducer;

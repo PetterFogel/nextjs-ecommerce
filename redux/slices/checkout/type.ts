@@ -4,4 +4,5 @@ export interface CheckoutState {
   cartItems: ICartItem[];
   totalAmount: number;
   totalQuantity: number;
+  shippingAmount: number;
 }
