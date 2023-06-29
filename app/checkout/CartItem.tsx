@@ -4,7 +4,7 @@ import { ICartItem } from "@/types/cartItem";
 import { checkoutSlice } from "@/redux/slices/checkout/cartSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { checkoutPageStyles } from "./style/checkoutPageStyles";
-import { Divider, Typography } from "@mui/material";
+import { Divider, IconButton, Tooltip, Typography } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
@@ -57,10 +57,16 @@ export const CartItem: FC<Props> = ({ cartItem }) => {
           />
         </div>
         <div className={classes.closeIconHolder}>
-          <CloseIcon
-            fontSize="small"
-            onClick={() => dispatch(deleteItemFromCart(cartItem.cartItemId))}
-          />
+          <Tooltip title="Delete" placement="top">
+            <IconButton>
+              <CloseIcon
+                fontSize="small"
+                onClick={() =>
+                  dispatch(deleteItemFromCart(cartItem.cartItemId))
+                }
+              />
+            </IconButton>
+          </Tooltip>
         </div>
       </div>
       <Divider />
