@@ -4,7 +4,7 @@ import { ICartItem } from "@/types/cartItem";
 import { checkoutSlice } from "@/redux/slices/checkout/cartSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { checkoutPageStyles } from "./style/checkoutPageStyles";
-import { Divider, IconButton, Tooltip, Typography } from "@mui/material";
+import { Divider, Tooltip, Typography } from "@mui/material";
 import RemoveIcon from "@mui/icons-material/Remove";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
@@ -44,28 +44,28 @@ export const CartItem: FC<Props> = ({ cartItem }) => {
           </div>
         </div>
         <div className={classes.quantityHolder}>
-          <RemoveIcon
-            fontSize="small"
-            onClick={() =>
-              dispatch(decreaseQunatityFromItem(cartItem.cartItemId))
-            }
-          />
+          <Tooltip title="Decrease">
+            <RemoveIcon
+              fontSize="small"
+              onClick={() =>
+                dispatch(decreaseQunatityFromItem(cartItem.cartItemId))
+              }
+            />
+          </Tooltip>
           <Typography variant={"h4"}>{cartItem.quantity}</Typography>
-          <AddIcon
-            fontSize="small"
-            onClick={() => dispatch(addItemToCart(cartItem))}
-          />
+          <Tooltip title="Increase">
+            <AddIcon
+              fontSize="small"
+              onClick={() => dispatch(addItemToCart(cartItem))}
+            />
+          </Tooltip>
         </div>
         <div className={classes.closeIconHolder}>
           <Tooltip title="Delete" placement="top">
-            <IconButton>
-              <CloseIcon
-                fontSize="small"
-                onClick={() =>
-                  dispatch(deleteItemFromCart(cartItem.cartItemId))
-                }
-              />
-            </IconButton>
+            <CloseIcon
+              fontSize="small"
+              onClick={() => dispatch(deleteItemFromCart(cartItem.cartItemId))}
+            />
           </Tooltip>
         </div>
       </div>
